@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block title %}Matadan | Login Page{% endblock title %} 
+{%block body %}
+<div class="container container-fluid" style="margin-top:85px; margin-bottom:125px;">
+  <div class="row content d-flex justify-content-center align-item-center">
+    <div class="col-md-5">
+      <div class="box shadow-lg p-4 bg-body rounded">
+        <h3 class="mb-4 text-center fs-1">Log In</h3>
+        <form mb-3 >
+          <div class="form-floating mb-3">
+            <input
+              type="text"
+              class="form-control rounded-0"
+              id="floatingInput" name="username"
+              placeholder="Enter your valid username."/>
+            <label for="floatingInput">Username</label>
+          </div>
+          <div class="form-floating mb-4">
+            <input
+              type="password"
+              class="form-control rounded-0"
+              id="password" name="password"
+              placeholder="Enter your Valid Password."/>
+            <label for="password">Password</label>
+          </div>
+          <label class="form-label">Select User Type:</label>
+          <div class="form-floating">
+            <select class="form-select mb-4" name="userrole" aria-label="Default select example">
+              <option selected name="adminuser" value="admin">Admin</option>
+              <option name="normaluser" value="user">User</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-danger w-100 fs-5">
+            Log In
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock body %}
