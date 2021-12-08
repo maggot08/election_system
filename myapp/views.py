@@ -68,8 +68,8 @@ def aboutus(request):
 def events(request):
     return render(request, 'events.html')
 
-def howtovote(request):
-    return render(request, 'howtovote.html')
+def howitworks(request):
+    return render(request, 'howitworks.html')
 
 def dashboard(request):
     return render(request, 'dashboard/admindashboard.html')
@@ -78,6 +78,12 @@ def handlelogout(request):
     logout(request)
     messages.warning(request, "Successfully Logged Out")
     return redirect('/index')
+
+def event(request):
+    return render(request, 'dashboard/event.html')
+
+def profile(request):
+    return render(request, 'dashboard/profile.html')
 
 def event(request):
     return render(request, 'dashboard/event.html')

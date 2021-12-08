@@ -13,10 +13,12 @@ urlpatterns = [
     path('handlesignup',views.handlesignup , name='handlesignup'),
     path('aboutus',views.aboutus , name='aboutus'),
     path('events',views.events , name='events'),
-    path('howtovote',views.howtovote , name='howtovote'),
+    path('howitworks',views.howitworks , name='howitworks'),
 
     path('dashboard',views.dashboard , name='dashboard'),
     path('logout',views.handlelogout , name='handlelogout'),
+    path('event',views.event, name="event"),
+    path('profile',views.profile, name="profile"),
     path('event',views.event, name="event"),
     
 
