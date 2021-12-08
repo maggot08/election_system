@@ -13,6 +13,8 @@ urlpatterns = [
     path('handlesignup',views.handlesignup , name='handlesignup'),
     path('aboutus',views.aboutus , name='aboutus'),
     path('events',views.events , name='events'),
-    path('howtovote',views.howtovote , name='howtovote')
+    path('howtovote',views.howtovote , name='howtovote'),
+
+    path('dashboard',views.dashboard , name='dashboard'),
 
 ]

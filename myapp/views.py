@@ -66,3 +66,6 @@ def events(request):
 
 def howtovote(request):
     return render(request, 'howtovote.html')
+
+def dashboard(request):
+    return render(request, 'dashboard/admindashboard.html')

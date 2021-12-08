@@ -13,7 +13,7 @@
 </head>
 <body class="home">
 {% include "nav.html" %}
-{% if messages %}
+    {% if messages %}
     {% for message in messages %}
     <div class="alert alert-{{ message.tags }} mb-0 alert-dismissible fade show" role="alert">
       <strong>{{ message }}</strong>
