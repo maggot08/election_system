@@ -18,7 +18,16 @@
 
     {% include "dashboard/sidebar.html" %}
     {% include "dashboard/navbar.html" %}
-
+            {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} mb-0 alert-dismissible fade show" role="alert">
+            <strong>{{ message }}</strong>
+            <button type="button" class="close bg-success bg-opacity-25" data-dismiss="alert" aria-label="Close" style="float:right;border:none;">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+            {% endfor %}
+            {% endif %}
         {% block body %}
 
         {% endblock body %}

@@ -18,8 +18,12 @@ def handlelogin(request):
         user=authenticate(username=username,password=password)
         if user is not None:
             login(request,user)
-            messages.success(request, "Welcome to Dashboard")
-            return redirect("/login")
+            if request.user.is_superuser:
+                messages.success(request, "Welcome to Dashboard!!")
+                return redirect("/dashboard")
+            else:
+                messages.warning(request, "Successfully Loged In!!")
+                return redirect("/login")
         else:
             messages.warning(request, "Invalid User")
             return redirect("/login")
@@ -69,3 +73,11 @@ def howtovote(request):
 
 def dashboard(request):
     return render(request, 'dashboard/admindashboard.html')
+
+def handlelogout(request):
+    logout(request)
+    messages.warning(request, "Successfully Logged Out")
+    return redirect('/index')
+
+def event(request):
+    return render(request, 'dashboard/event.html')

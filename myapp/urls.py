@@ -16,5 +16,8 @@ urlpatterns = [
     path('howtovote',views.howtovote , name='howtovote'),
 
     path('dashboard',views.dashboard , name='dashboard'),
+    path('logout',views.handlelogout , name='handlelogout'),
+    path('event',views.event, name="event"),
+    
 
 ]
