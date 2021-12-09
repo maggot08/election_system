@@ -6,7 +6,7 @@
     <div class="col-md-5">
       <div class="box shadow-lg p-4 bg-body rounded">
         <h3 class="mb-4 text-center fs-1">Log In</h3>
-        <form mb-3 method="POST" action="/handlelogin">
+        <form class="mb-3" method="POST" action="/handlelogin">
           {% csrf_token %}
           <div class="form-floating mb-3">
             <input
@@ -35,6 +35,9 @@
             Log In
           </button>
         </form>
+        <div class="text-center mt-4 text-decoration-underline">
+          <a href="signup" class=" link-primary ">Create an Account!</a>
+        </div>
       </div>
     </div>
   </div>
