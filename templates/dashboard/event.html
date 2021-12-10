@@ -7,9 +7,54 @@
     <div class="container-fluid">
         <h3 class="text-dark mb-4">Events</h3>
         <div class="card shadow">
-            <div class="card-header py-3">
-                <p class="text-primary m-0 fw-bold">Events Table</p>
+            <div class="row">
+                <div class="col-md-6 align-self-center m-4">
+                    <p class="text-primary m-0 fw-bold">Events Table</p>
+                </div>
+                <div class="col-sm-5 m-2 d-lg-flex justify-content-lg-end">
+                    <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#reg-modal">Add Event</button>
+                </div>
             </div>
+
+            <!-- Button Modal -->
+            <div class="modal fade" id="reg-modal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-scrollable">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="modal-title">Fill out the form for new Event.</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container">
+                                <form class="mx-1 mx-md-4" method="POST" action="/handlesignup">
+                                    {% csrf_token %}
+                                    <div class="mb-3">
+                                        <input class="form-control" type="text" id="signupfname" placeholder="Event Name" name="signupfname">
+                                    </div>
+                                    <div class="mb-3">
+                                        <input type="text" id="signuplname" name="signuplname" class="form-control" placeholder="No. of Participants">
+                                    </div>
+                                    <div class="mb-3">
+                                      <input type="text" name="signupusername" id="signupusername" class="form-control" placeholder="Catagory">
+                                    </div>
+                                    <div class="mb-3">
+                                      <input type="text" id="signupemail" name="signupemail" class="form-control" placeholder="Start Date">
+                                    </div>
+                                    <div class="mb-3">
+                                        <input type="text" id="signuppassword" name="signuppassword" class="form-control" placeholder="End Date">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancel</button>
+                            <button type="button" class="btn btn-danger">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Button Modal -->
+
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-6 text-nowrap">
@@ -35,11 +80,11 @@
                     <table class="table my-0" id="dataTable">
                         <thead>
                             <tr>
-                                <th>Name</th>
-                                <th>Position</th>
-                                <th>Office</th>
-                                <th>Age</th>
+                                <th>Event Name</th>
+                                <th>No. of Participants</th>
+                                <th>Catagory</th>
                                 <th>Start date</th>
+                                <th>End Date</th>
                                 <th>Salary</th>
                             </tr>
                         </thead>
@@ -55,11 +100,11 @@
                         </tbody>
                         <tfoot>
                             <tr>
-                                <td><strong>Name</strong></td>
-                                <td><strong>Position</strong></td>
-                                <td><strong>Office</strong></td>
-                                <td><strong>Age</strong></td>
+                                <td><strong>Event Name</strong></td>
+                                <td><strong>No. of Participants</strong></td>
+                                <td><strong>Catagory</strong></td>
                                 <td><strong>Start date</strong></td>
+                                <td><strong>End Date</strong></td>
                                 <td><strong>Salary</strong></td>
                             </tr>
                         </tfoot>

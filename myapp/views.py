@@ -23,7 +23,7 @@ def handlelogin(request):
                 return redirect("/dashboard")
             else:
                 messages.warning(request, "Successfully Loged In!!")
-                return redirect("/login")
+                return redirect("/events")
         else:
             messages.warning(request, "Invalid User")
             return redirect("/login")

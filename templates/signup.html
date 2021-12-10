@@ -6,43 +6,38 @@
   <div class="row content d-flex justify-content-center align-item-center">
     <div class="col-md-6">
       <div class="box shadow-lg p-4 bg-body rounded">
-          <h4 class="text-center mb-4">Create an Account!</h4>
-                      <form class="mx-1 mx-md-4" method="POST" action="/handlesignup">
-                        {% csrf_token %}
-                          <div class="row mb-3">
-                              <div class="col-sm-6 mb-3 mb-sm-0">
-                                <input class="form-control form-rounded" type="text" id="signupfname" placeholder="First Name" name="signupfname">
-                              </div>
-                              <div class="col-sm-6">
-                                <input type="text" id="signuplname" name="signuplname" class="form-control" placeholder="Last Name">
-                              </div>
-                          </div>
-                          <div class="mb-3">
-                            <input type="text" name="signupusername" id="signupusername" class="form-control" placeholder="Username">
-                          </div>
-                          <div class="mb-3">
-                            <input type="email" id="signupemail" name="signupemail" class="form-control" placeholder="E-mail">
-                          </div>
-                          <div class="row mb-3">
-                              <div class="col-sm-6 mb-3 mb-sm-0">
-                                <input type="password" id="signuppassword" name="signuppassword" class="form-control" placeholder="Password">
-                              </div>
-                              <div class="col-sm-6">
-                                <input type="password" id="signuppassword2" name="signuppassword2" class="form-control" placeholder="Repeat Password">
-                              </div>
-                          </div>
-                          <button class="btn btn-danger d-block btn-user w-100" type="submit">Register Account
-                          </button>
-                          
-                      </form>
-                      
-                      <div class="text-center mt-4">
-                        
-                        <a class="link-primary" href="login">Already have an account? Login!</a>
-                      </div>
-                  </div>
-              </div>
+        <h4 class="text-center mb-4">Create an Account!</h4>
+        <form class="mx-1 mx-md-4" method="POST" action="/handlesignup">
+          {% csrf_token %}
+          <div class="row mb-3">
+            <div class="col-sm-6 mb-3 mb-sm-0">
+              <input class="form-control form-rounded" type="text" id="signupfname" placeholder="First Name" name="signupfname">
+            </div>
+            <div class="col-sm-6">
+              <input type="text" id="signuplname" name="signuplname" class="form-control" placeholder="Last Name">
+            </div>
           </div>
+          <div class="mb-3">
+            <input type="text" name="signupusername" id="signupusername" class="form-control" placeholder="Username">
+          </div>
+          <div class="mb-3">
+            <input type="email" id="signupemail" name="signupemail" class="form-control" placeholder="E-mail">
+          </div>
+          <div class="row mb-3">
+            <div class="col-sm-6 mb-3 mb-sm-0">
+              <input type="password" id="signuppassword" name="signuppassword" class="form-control" placeholder="Password">
+            </div>
+            <div class="col-sm-6">
+              <input type="password" id="signuppassword2" name="signuppassword2" class="form-control" placeholder="Repeat Password">
+            </div>
+          </div>
+          <button class="btn btn-danger d-block btn-user w-100" type="submit">Register Account</button>
+        </form>
+        <div class="text-center mt-4">
+          <a class="link-primary" href="login">Already have an account? Login!</a>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 
