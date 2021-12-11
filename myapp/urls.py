@@ -20,6 +20,9 @@ urlpatterns = [
     path('event',views.event, name="event"),
     path('profile',views.profile, name="profile"),
     path('event',views.event, name="event"),
+
+    path('addevent',views.addevent, name="addevent"),
+    path('deleteevent/<int:id>',views.deleteevent, name="deleteevent")
     
 
 ]

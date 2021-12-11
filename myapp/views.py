@@ -1,4 +1,5 @@
 from django.contrib.auth.models import User
+from myapp.models import *
 from django.contrib.auth import authenticate,login,logout
 from django.shortcuts import redirect, render, HttpResponse, HttpResponseRedirect
 from django.contrib import messages
@@ -80,10 +81,30 @@ def handlelogout(request):
     return redirect('/index')
 
 def event(request):
-    return render(request, 'dashboard/event.html')
+    event=Event.objects.all()
+    context={
+        'events':event
+    }
+    return render(request, 'dashboard/event.html',context)
 
 def profile(request):
     return render(request, 'dashboard/profile.html')
 
-def event(request):
-    return render(request, 'dashboard/event.html')
+def addevent(request):
+    if request.method=="POST":
+        addeventname=request.POST['addeventname']
+        eventcatagory=request.POST['eventcatagory']
+        startdate=request.POST['startdate']
+        enddate=request.POST['enddate']
+
+        saveevent=Event(event_name=addeventname, event_catagory=eventcatagory, event_startdate=startdate, event_enddate=enddate)
+        saveevent.save()
+    messages.warning(request, "Event added successfully!!!")    
+    return redirect('/event')
+
+def deleteevent(request, id):
+    event=Event.objects.filter(pk=id)
+    event.delete()
+
+    messages.warning(request, "Event Deleted!!!")    
+    return HttpResponseRedirect('/event')
