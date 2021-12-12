@@ -19,10 +19,11 @@ urlpatterns = [
     path('logout',views.handlelogout , name='handlelogout'),
     path('event',views.event, name="event"),
     path('profile',views.profile, name="profile"),
-    path('event',views.event, name="event"),
+    # path('event',views.event, name="event"),
 
     path('addevent',views.addevent, name="addevent"),
-    path('deleteevent/<int:id>',views.deleteevent, name="deleteevent")
+    path('deleteevent/<event_id>',views.deleteevent, name="deleteevent"),
+    path('editevent/<event_id>',views.editevent, name="editevent"),
     
 
 ]

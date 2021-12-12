@@ -102,9 +102,14 @@ def addevent(request):
     messages.warning(request, "Event added successfully!!!")    
     return redirect('/event')
 
-def deleteevent(request, id):
-    event=Event.objects.filter(pk=id)
+def deleteevent(request, event_id):
+    event=Event.objects.get(pk=event_id)
     event.delete()
 
     messages.warning(request, "Event Deleted!!!")    
-    return HttpResponseRedirect('/event')
+    return redirect('event')
+
+def editevent(request, event_id):
+    event=Event.objects.get(pk=event_id)
+    
+    return render(request,'editevent', {'event':'event'})
