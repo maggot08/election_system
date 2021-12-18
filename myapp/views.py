@@ -3,6 +3,7 @@ from myapp.models import *
 from django.contrib.auth import authenticate,login,logout
 from django.shortcuts import redirect, render, HttpResponse, HttpResponseRedirect
 from django.contrib import messages
+from myapp.form import *
 
 # Create your views here.
 def home(request):
@@ -106,10 +107,20 @@ def deleteevent(request, event_id):
     event=Event.objects.get(pk=event_id)
     event.delete()
 
-    messages.warning(request, "Event Deleted!!!")    
+    messages.warning(request, "Event Deleted!!!")   
     return redirect('event')
 
-def editevent(request, event_id):
-    event=Event.objects.get(pk=event_id)
+def editevent(request, id):
+    if request.method=="post":
+        event=Event.objects.get(pk=id)
+        form=Eventform(request.post, instance=event)
+        if form.is_valid:
+            form.save
+            messages.success(request, "Event updated successfully!!!")
+            form=Eventform()
+            return redirect('/event')
+    else:
+        event=Event.objects.get(pk=id)
+        form=Eventform(instance=event)
     
-    return render(request,'editevent', {'event':'event'})
+    return render(request,'dashboard/editevent.html', {'event':'event','form':'form'})

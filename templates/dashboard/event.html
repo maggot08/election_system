@@ -92,9 +92,8 @@
                                 <td>{{event.event_startdate}}</td>
                                 <td>{{event.event_enddate}}</td>
                                 <td>
-                                    <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#edit-modal"><i class="fa fa-edit"></i>  Edit</button>
-                                    <a type="button" href="{% url 'deleteevent' event.id %}" class="btn btn-danger" ><i class="fa fa-trash"></i>  Delete</a>
-                                    {% comment %} data-bs-toggle="modal" data-bs-target="#delete-modal" {% endcomment %}
+                                    <a href="{% url 'editevent' event.id %}" class="btn btn-outline-primary"><i class="fa fa-edit"></i>  Edit</a>
+                                    <a type="button"  class="btn btn-danger" ><i class="fa fa-trash" data-bs-toggle="modal" data-bs-target="#delete-modal"></i>  Delete</a>
                                 </td>
                                 
                                 <!-- Edit Button Modal -->
@@ -110,10 +109,10 @@
                                                     <form class="mx-1 mx-md-4" method="POST" action="/editevent">
                                                         {% csrf_token %}
                                                         <div class="mb-3">
-                                                            <input class="form-control" type="text" id="editeventname" placeholder="Event Name" name="editeventname">
+                                                            <input class="form-control" type="text" id="editeventname" placeholder="Event Name" name="editeventname" value="{{event.event_name}}">
                                                         </div>
                                                         <div class="mb-3">
-                                                            <input type="text" name="editeventcatagory" id="editeventcatagory" class="form-control" placeholder="Catagory">
+                                                            <input type="text" name="editeventcatagory" id="editeventcatagory" class="form-control" placeholder="Catagory" >
                                                         </div>
                                                         <div class="mb-3">
                                                             <input type="text" id="editstartdate" name="editstartdate" class="form-control" placeholder="Start Date">
@@ -126,7 +125,7 @@
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancel</button>
-                                                <button type="button" class="btn btn-success">Update</button>
+                                                <a href="{% url 'editevent' event.id %}" class="btn btn-success">Update</a>
                                             </div>
                                         </div>
                                     </div>

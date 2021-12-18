@@ -1,0 +1,11 @@
+{% extends 'dashboard/main.html' %}
+{% block title %}|Dashboard - Edit event|{% endblock title %}
+{% block body %}
+    <div class="container">
+        <form action="" method="post">
+            {% csrf_token %}
+            {{form.as_p}}
+        </form>
+    </div>
+
+{% endblock body %}
