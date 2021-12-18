@@ -20,10 +20,10 @@ def handlelogin(request):
         if user is not None:
             login(request,user)
             if request.user.is_superuser:
-                messages.success(request, "Welcome to Dashboard!!")
+                messages.success(request, "Welcome to Admin Dashboard!!")
                 return redirect("/dashboard")
             else:
-                messages.warning(request, "Successfully Loged In!!")
+                messages.warning(request, "Successfully Loged In as User!!")
                 return redirect("/events")
         else:
             messages.warning(request, "Invalid User")
