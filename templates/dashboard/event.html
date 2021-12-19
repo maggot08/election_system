@@ -93,47 +93,10 @@
                                 <td>{{event.event_enddate}}</td>
                                 <td>
                                     <a href="{% url 'editevent' event.id %}" class="btn btn-outline-primary"><i class="fa fa-edit"></i>  Edit</a>
-                                    <a type="button"  class="btn btn-danger" ><i class="fa fa-trash" data-bs-toggle="modal" data-bs-target="#delete-modal"></i>  Delete</a>
+                                    <button type="button"  class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete-modal"><i class="fa fa-trash" ></i>  Delete</button>
                                 </td>
-                                
-                                <!-- Edit Button Modal -->
-                                <div class="modal fade" id="edit-modal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered">
-                                        <div class="modal-content bg-white">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="modal-title">Edit Event.</h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <div class="container">
-                                                    <form class="mx-1 mx-md-4" method="POST" action="/editevent">
-                                                        {% csrf_token %}
-                                                        <div class="mb-3">
-                                                            <input class="form-control" type="text" id="editeventname" placeholder="Event Name" name="editeventname" value="{{event.event_name}}">
-                                                        </div>
-                                                        <div class="mb-3">
-                                                            <input type="text" name="editeventcatagory" id="editeventcatagory" class="form-control" placeholder="Catagory" >
-                                                        </div>
-                                                        <div class="mb-3">
-                                                            <input type="text" id="editstartdate" name="editstartdate" class="form-control" placeholder="Start Date">
-                                                        </div>
-                                                        <div class="mb-3">
-                                                            <input type="text" id="editenddate" name="editenddate" class="form-control" placeholder="End Date">
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancel</button>
-                                                <a href="{% url 'editevent' event.id %}" class="btn btn-success">Update</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                            
-                                <!-- End Edit Button Modal -->
-                                
-                                <!-- Add Event Button Modal -->
+                                 
+                                <!-- Delete Button Modal -->
                                 <div class="modal fade" id="delete-modal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered">
                                         <div class="modal-content bg-white">

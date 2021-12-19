@@ -111,16 +111,17 @@ def deleteevent(request, event_id):
     return redirect('event')
 
 def editevent(request, id):
-    if request.method=="post":
+    if request.method=="POST":
         event=Event.objects.get(pk=id)
-        form=Eventform(request.post, instance=event)
+        form=Eventform(request.POST, instance=event)
         if form.is_valid:
-            form.save
+            form.save()
             messages.success(request, "Event updated successfully!!!")
             form=Eventform()
-            return redirect('/event')
+            return redirect("/event")
     else:
         event=Event.objects.get(pk=id)
         form=Eventform(instance=event)
     
-    return render(request,'dashboard/editevent.html', {'event':'event','form':'form'})
+    return render(request,'dashboard/editevent.html', {'event':event,'form':form})
+

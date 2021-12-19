@@ -9,10 +9,10 @@ from django.forms import widgets
 class Eventform(forms.ModelForm):
     class Meta:
         model=Event
-        fields=('event_name','event_catagory','event_startdate','event_enddate')
+        fields=['event_name','event_catagory','event_startdate','event_enddate']
         widgets= {
             'event_name':forms.TextInput(attrs={'class':'form-control'},),
-            'event_category':forms.TextInput(attrs={'class':'form-control'}),
+            'event_catagory':forms.TextInput(attrs={'class':'form-control'}),
             'event_startdate':forms.TextInput(attrs={'class':'form-control'}),
             'event_enddate':forms.TextInput(attrs={'class':'form-control'}),
         }
