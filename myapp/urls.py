@@ -14,6 +14,7 @@ urlpatterns = [
     path('aboutus',views.aboutus , name='aboutus'),
     path('events',views.events , name='events'),
     path('howitworks',views.howitworks , name='howitworks'),
+    path('contestants',views.contestants , name='contestants'),
 
     path('dashboard',views.dashboard , name='dashboard'),
     path('logout',views.handlelogout , name='handlelogout'),

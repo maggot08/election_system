@@ -67,6 +67,9 @@ def handlesignup(request):
 def aboutus(request):
     return render(request, 'aboutus.html')
 
+def contestants(request):
+    return render(request, 'contestants.html')
+
 def events(request):
     return render(request, 'events.html')
 
