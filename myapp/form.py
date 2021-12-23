@@ -4,6 +4,7 @@ from django.db.models.base import Model
 
 from myapp.models import Event
 from django.forms import widgets
+from django.contrib.admin.widgets import AdminDateWidget
 
 
 class Eventform(forms.ModelForm):
@@ -13,7 +14,7 @@ class Eventform(forms.ModelForm):
         widgets= {
             'event_name':forms.TextInput(attrs={'class':'form-control'},),
             'event_catagory':forms.TextInput(attrs={'class':'form-control'}),
-            'event_startdate':forms.TextInput(attrs={'class':'form-control'}),
-            'event_enddate':forms.TextInput(attrs={'class':'form-control'}),
+            'event_startdate':forms.TextInput(attrs={'class':'form-control', 'type':'date'}),
+            'event_enddate':forms.TextInput(attrs={'class':'form-control', 'type':'date'}),
         }
         
