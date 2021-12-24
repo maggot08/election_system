@@ -1,7 +1,25 @@
 {% extends 'base.html' %}
-{% block title %}|Events|{% endblock title %}
+{% block title %}Event | Mr. Nepal{% endblock title %}
 {% block body %}
-<div class="container m-4">
-    hello
+
+<div class="container container-fluid" style="margin-top:80px; margin-bottom:80px">
+    <div>
+        <h1 class="text-dark mb-4"> Choose your Candidate.</h1>
+    <!-- Event Cards-->
+        <div class="row row-cols-1 row-cols-md-5 g-4">
+            <div class="col">
+                <a href="#">
+                    <div class="card" style="width:175px">
+                        <img class="card-img-top" src="static/img/roshan.jpg" alt="Card image" style="width:100%">
+                        <div class="card-body">
+                            <h4 class="card-title mb-4" >Roshan Shrestha</h4>
+                            <a href="/contestants" class="btn btn-primary">Vote Me</a>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
 </div>
+
 {% endblock body %}

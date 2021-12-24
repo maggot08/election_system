@@ -128,3 +128,15 @@ def editevent(request, id):
     
     return render(request,'dashboard/editevent.html', {'event':event,'form':form})
 
+def contestant(request):
+    if request.method=="POST":
+        form=Contestantfrom(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "added successfully")
+            form=Contestantfrom()
+            return redirect("/contestanttable")
+    else:
+        form=Contestantfrom()
+
+    return render(request, 'dashboard/contestanttable.html',{'form':form})

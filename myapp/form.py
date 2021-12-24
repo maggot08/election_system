@@ -2,9 +2,8 @@ from django import forms
 from django.db.models import fields
 from django.db.models.base import Model
 
-from myapp.models import Event
+from myapp.models import *
 from django.forms import widgets
-from django.contrib.admin.widgets import AdminDateWidget
 
 
 class Eventform(forms.ModelForm):
@@ -17,4 +16,18 @@ class Eventform(forms.ModelForm):
             'event_startdate':forms.TextInput(attrs={'class':'form-control  w-50', 'type':'date'}),
             'event_enddate':forms.TextInput(attrs={'class':'form-control  w-50', 'type':'date'}),
         }
+
+class Contestantfrom(forms.ModelForm):
+    class Meta:
+        model=Contestant
+        fields=['contestant_id','event','contestant_name','contestant_image','contestant_age','contentant_height']
+        widgets= {
+            'contestant_id':forms.TextInput(attrs={'class':'form-control w-50'},),
+            'event':forms.Select(attrs={'class':'form-control w-50'},),
+            'contestant_name':forms.TextInput(attrs={'class':'form-control w-50'},),
+            'contestant_image':forms.FileInput(attrs={'class':'form-control  w-50'}),
+            'contestant_age':forms.TextInput(attrs={'class':'form-control  w-50'}),
+            'contentant_height':forms.TextInput(attrs={'class':'form-control  w-50'}),
+        }
+
         

@@ -1,5 +1,5 @@
 {% extends 'dashboard/main.html' %}
-{% block title %}|Dashboard - Events|{% endblock title %}
+{% block title %}Dashboard | Events{% endblock title %}
 {% block body %}
 
 <!-- Table Content -->
@@ -87,7 +87,7 @@
                         {% for event in events %}
                         <tbody>
                             <tr>
-                                <td>{{event.event_name}}</td>
+                                <td><a href="" class="text-decoration-none">{{event.event_name}}</a></td>
                                 <td>{{event.event_catagory}}</td>
                                 <td>{{event.event_startdate}}</td>
                                 <td>{{event.event_enddate}}</td>

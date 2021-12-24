@@ -25,6 +25,7 @@ urlpatterns = [
     path('addevent',views.addevent, name="addevent"),
     path('editevent/<int:id>',views.editevent, name="editevent"),
     path('deleteevent/<event_id>',views.deleteevent, name="deleteevent"),
+    path('contestanttable',views.contestant, name="contestant"),
     
 
 ]

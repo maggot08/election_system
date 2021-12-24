@@ -1,13 +1,12 @@
 {% extends 'dashboard/main.html' %}
-{% block title %}Dashboard | Edit event{% endblock title %}
+{% block title %}Dashboard | Contestants{% endblock title %}
 {% block body %}
     <div class="container">
-        <form action="" method="post">
+        <form action="" method="post" enctype="multipart/form-data">
             {% csrf_token %}
             {{form.as_p}}
-            <input type="submit" value="Update" class="btn btn-primary">
+            <input type="submit" value="Add Contestant" class="btn btn-primary">
             <a href="/event" type="button" class="btn btn-secondary">Cancel</a>
         </form>
     </div>
-
 {% endblock body %}

@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block title %}|Events|{% endblock title %}
+{% block title %}Matadan | Events{% endblock title %}
 {% block body %}
 <div class="container container-fluid" style="margin-top:80px; margin-bottom:80px">
     <div>
@@ -7,14 +7,15 @@
     <!-- Event Cards-->
         <div class="row row-cols-1 row-cols-md-3 g-4">
             <div class="col">
-                <div class="card" style="width:325px">
+                <a href="/contestants">
+                <div class="card" style="width:200px">
                     <img class="card-img-top" src="static/img/roshan.jpg" alt="Card image" style="width:100%">
                     <div class="card-body">
-                        <h4 class="card-title">John Doe</h4>
-                        <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
-                        <a href="/contestants" class="btn btn-primary">See Profile</a>
+                        <a class="card-title fs-4 fb">Mister Nepal</a>
+                        <p class="card-text">Male Beauty Pagent</p>
                     </div>
                 </div>
+                </a>
             </div>
         </div>
     </div>
