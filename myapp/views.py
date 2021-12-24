@@ -76,6 +76,9 @@ def events(request):
 def howitworks(request):
     return render(request, 'howitworks.html')
 
+def eventdetail(request):
+    return render(request, 'eventdetail.html')
+
 def dashboard(request):
     return render(request, 'dashboard/admindashboard.html')
 
