@@ -2,11 +2,14 @@
 {% block title %}Dashboard | Contestants{% endblock title %}
 {% block body %}
     <div class="container">
-        <form action="" method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            {{form.as_p}}
-            <input type="submit" value="Add Contestant" class="btn btn-primary">
-            <a href="/event" type="button" class="btn btn-secondary">Cancel</a>
-        </form>
+        <div class="container-fluid">
+            <form action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{form.as_p}}
+                <input type="submit" value="Add Contestant" class="btn btn-primary">
+                <a href="/event" type="button" class="btn btn-secondary">Cancel</a>
+            </form>
+        </div>
     </div>
+</div>
 {% endblock body %}

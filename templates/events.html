@@ -5,19 +5,21 @@
     <div>
         <h1 class="text-dark mb-4"> Ongoing Events</h1>
     <!-- Event Cards-->
-        <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="row row-cols-1 row-cols-md-4 g-4">
+            {% for event in events %}
             <div class="col">
                 <a href="/contestants">
                 <div class="card" style="width:200px">
-                    <img class="card-img-top" src="static/img/roshan.jpg" alt="Card image" style="width:100%">
+                    <img class="card-img-top" src="static/img/mrnepal.jpg" alt="Card image" style="width:100%">
                     <div class="card-body">
-                        <a class="card-title fs-4 fb">Mister Nepal</a>
-                        <p class="card-text">Male Beauty Pagent</p>
+                        <a class="card-title fs-4 fb">{{event.event_name}}</a>
+                        <p class="card-text">{{event.event_catagory}}</p>
                         <a href="/eventdetail" class="btn btn-primary">Event Details</a>
                     </div>
                 </div>
                 </a>
             </div>
+            {% endfor %}
         </div>
     </div>
 </div>

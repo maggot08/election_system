@@ -3,7 +3,7 @@
 {% block body %}
 
 <!-- Table Content -->
-<div>
+<div class="container mb-5">
     <div class="container-fluid">
         <h3 class="text-dark mb-4">Events</h3>
         <div class="card shadow">
@@ -12,46 +12,11 @@
                     <p class="text-primary m-0 fw-bold">Events Table</p>
                 </div>
                 <div class="col-sm-5 m-2 d-lg-flex justify-content-lg-end">
-                    <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#add-modal">Add Event</button>
+                    <a href="/addevent" type="button" class="btn btn-outline-danger text-allign-center">Add Event</a>
                 </div>
             </div>
 
-            <!-- Add Event Button Modal -->
-            <div class="modal fade" id="add-modal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="modal-title" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="modal-title">Fill out the form for new Event.</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="container">
-                                <form class="mx-1 mx-md-4" method="POST" action="/addevent">
-                                    {% csrf_token %}
-                                    <div class="mb-3">
-                                        <input class="form-control" type="text" id="addeventname" placeholder="Event Name" name="addeventname">
-                                    </div>
-                                    <div class="mb-3">
-                                        <input type="text" name="eventcatagory" id="eventcatagory" class="form-control" placeholder="Catagory">
-                                    </div>
-                                    <div class="mb-3">
-                                        <input type="date" id="startdate" name="startdate" class="form-control" placeholder="Start Date">
-                                    </div>
-                                    <div class="mb-3">
-                                        <input type="date" id="enddate" name="enddate" class="form-control" placeholder="End Date">
-                                    </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cancel</button>
-                            <button type="submit" class="btn btn-danger">Submit</button>
-                        </div>
-                    </form>
-                    </div>
-                </div>
-            </div>
-            <!-- End Add Event Button Modal -->
-            
+
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-6 text-nowrap">
@@ -79,6 +44,7 @@
                             <tr>
                                 <th>Event Name</th>
                                 <th>Catagory</th>
+                                <th>Event Image</th>
                                 <th>Start date</th>
                                 <th>End Date</th>
                                 <th>Action</th>
@@ -87,8 +53,13 @@
                         {% for event in events %}
                         <tbody>
                             <tr>
-                                <td><a href="" class="text-decoration-none">{{event.event_name}}</a></td>
+                                <td>
+                                    <img class="rounded-circle" src="{{event.event_image}}" />
+                                    <a href="" class="text-decoration-none">
+                                        {{event.event_name}}</a>
+                                </td>
                                 <td>{{event.event_catagory}}</td>
+                                <td>{{event.event_image}}</td>
                                 <td>{{event.event_startdate}}</td>
                                 <td>{{event.event_enddate}}</td>
                                 <td>
@@ -102,6 +73,7 @@
                             <tr>
                                 <td><strong>Event Name</strong></td>
                                 <td><strong>Catagory</strong></td>
+                                <td><strong>Event Image</strong></td>
                                 <td><strong>Start date</strong></td>
                                 <td><strong>End Date</strong></td>
                                 <td><strong>Action</strong></td>
@@ -128,5 +100,6 @@
             </div>
         </div>
     </div>
+</div>
 </div>
 {% endblock body %}

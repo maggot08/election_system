@@ -5,6 +5,7 @@ from django.db import models
 class Event(models.Model):
     event_name=models.CharField(max_length=30)
     event_catagory=models.CharField(max_length=30)
+    event_image=models.ImageField(blank=True, null=True)
     event_startdate=models.CharField(max_length=30)
     event_enddate=models.CharField(max_length=30)
     def __str__(self):

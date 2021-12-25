@@ -21,7 +21,6 @@ urlpatterns = [
     path('logout',views.handlelogout , name='handlelogout'),
     path('event',views.event, name="event"),
     path('profile',views.profile, name="profile"),
-    # path('event',views.event, name="event"),
 
     path('addevent',views.addevent, name="addevent"),
     path('editevent/<int:id>',views.editevent, name="editevent"),

@@ -3,17 +3,28 @@
 {% block body %}
 
 <div class="container container-fluid" style="margin-top:80px; margin-bottom:80px">
-    <div>
-        <h1 class="text-dark mb-4"> Choose your Candidate.</h1>
+    <div class="row">
+        <div class="col-10">
+            <h1 class="text-dark mb-4"> Choose your Candidate For Mister Nepal</h1>
+        </div>
+        <div class="col-2">
+            <a class="btn btn-danger" href="/eventdetail">Details about Mr.Nepal</a>
+        </div>
+    </div>
     <!-- Event Cards-->
         <div class="row row-cols-1 row-cols-md-5 g-4">
             <div class="col">
                 <a href="#">
-                    <div class="card" style="width:175px">
+                    <div class="card" style="width:200px">
                         <img class="card-img-top" src="static/img/roshan.jpg" alt="Card image" style="width:100%">
                         <div class="card-body">
                             <h4 class="card-title mb-4" >Roshan Shrestha</h4>
-                            <a href="/contestants" class="btn btn-primary">Vote Me</a>
+                            <div class="btn-wrapper text-center d-flex justify-content-between">
+                                <a href="/contestants" class="btn btn-sm btn-primary d-flex align-items-center">Vote Me</a>
+                                <br>
+                                <br>   
+                                <a href="/profile" class="btn btn-sm btn-primary d-flex align-items-center">View Profile</a>
+                            </div> 
                         </div>
                     </div>
                 </a>

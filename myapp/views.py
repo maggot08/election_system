@@ -71,7 +71,12 @@ def contestants(request):
     return render(request, 'contestants.html')
 
 def events(request):
-    return render(request, 'events.html')
+    event=Event.objects.all()
+    context={
+        'events':event
+    }
+    return render(request, 'events.html',context)
+
 
 def howitworks(request):
     return render(request, 'howitworks.html')
@@ -99,15 +104,15 @@ def profile(request):
 
 def addevent(request):
     if request.method=="POST":
-        addeventname=request.POST['addeventname']
-        eventcatagory=request.POST['eventcatagory']
-        startdate=request.POST['startdate']
-        enddate=request.POST['enddate']
-
-        saveevent=Event(event_name=addeventname, event_catagory=eventcatagory, event_startdate=startdate, event_enddate=enddate)
-        saveevent.save()
-    messages.warning(request, "Event added successfully!!!")    
-    return redirect('/event')
+        form=Addeventform(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Event added successfully")
+            form=Addeventform()
+            return redirect("/event")
+    else:
+        form=Addeventform()
+    return render(request, 'dashboard/addevent.html',{'form':form})
 
 def deleteevent(request, event_id):
     event=Event.objects.get(pk=event_id)
@@ -119,7 +124,7 @@ def deleteevent(request, event_id):
 def editevent(request, id):
     if request.method=="POST":
         event=Event.objects.get(pk=id)
-        form=Eventform(request.POST, instance=event)
+        form=Eventform(request.POST, request.FILES, instance=event)
         if form.is_valid:
             form.save()
             messages.success(request, "Event updated successfully!!!")
