@@ -85,6 +85,11 @@ def eventdetail(request):
     return render(request, 'eventdetail.html')
 
 def dashboard(request):
+    if request.user.is_authenticated and request.user.is_superuser:
+        pass
+    else:
+        messages.warning(request, "You are not Authorized to access this page!!")    
+        return redirect("/")
     return render(request, 'dashboard/admindashboard.html')
 
 def handlelogout(request):
@@ -93,6 +98,11 @@ def handlelogout(request):
     return redirect('/index')
 
 def event(request):
+    if request.user.is_authenticated and request.user.is_superuser:
+        pass
+    else:
+        messages.warning(request, "You are not Authorized to access this page!!")    
+        return redirect("/")
     event=Event.objects.all()
     context={
         'events':event
@@ -100,9 +110,19 @@ def event(request):
     return render(request, 'dashboard/event.html',context)
 
 def profile(request):
+    if request.user.is_authenticated and request.user.is_superuser:
+        pass
+    else:
+        messages.warning(request, "You are not Authorized to access this page!!")    
+        return redirect("/")
     return render(request, 'dashboard/profile.html')
 
 def addevent(request):
+    if request.user.is_authenticated and request.user.is_superuser:
+        pass
+    else:
+        messages.warning(request, "You are not Authorized to access this page!!")    
+        return redirect("/")
     if request.method=="POST":
         form=Addeventform(request.POST, request.FILES)
         if form.is_valid():
@@ -137,6 +157,11 @@ def editevent(request, id):
     return render(request,'dashboard/editevent.html', {'event':event,'form':form})
 
 def contestant(request):
+    if request.user.is_authenticated and request.user.is_superuser:
+        pass
+    else:
+        messages.warning(request, "You are not Authorized to access this page!!")    
+        return redirect("/")
     if request.method=="POST":
         form=Contestantfrom(request.POST, request.FILES)
         if form.is_valid():
