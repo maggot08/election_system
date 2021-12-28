@@ -15,11 +15,11 @@
         <div class="row row-cols-1 row-cols-md-5 g-4">
             <div class="col">
                 <a href="#">
-                    
+                    {% for contestant in contestants %}
                     <div class="card" style="width:200px">
-                        <img class="card-img-top" src="static/img/roshan.jpg" alt="Card image" style="width:100%">
+                        <img class="card-img-top" src="{{contestant.contestant_image.url}}" alt="Card image" style="width:100%">
                         <div class="card-body">
-                            <h4 class="card-title mb-4" >Roshan Shrestha</h4>
+                            <h4 class="card-title mb-4" >{{contestant.contestant_name}}</h4>
                             <div class="btn-wrapper text-center d-flex justify-content-between">
                                 <a href="/contestants" class="btn btn-sm btn-primary d-flex align-items-center">Vote Me</a>
                                 <br>
@@ -28,6 +28,7 @@
                             </div> 
                         </div>
                     </div>
+                    {% endfor %}
                 </a>
             </div>
         </div>

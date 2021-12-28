@@ -67,8 +67,11 @@ def handlesignup(request):
 def aboutus(request):
     return render(request, 'aboutus.html')
 
-def contestants(request, slug):
-    contestant=Contestant.objects.filter(event=slug)
+def contestants(request, id):
+    try:
+        contestant=Contestant.objects.get(pk=id)
+    except Contestant.DoesNotExist:
+        contestant=None
     context={
         'contestants':contestant
     }

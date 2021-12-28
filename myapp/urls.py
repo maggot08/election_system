@@ -16,7 +16,7 @@ urlpatterns = [
     path('events',views.events , name='events'),
     path('howitworks',views.howitworks , name='howitworks'),
     path('contestants',views.contestants , name='contestants'),
-    path('contestants/<str:slug>', views.contestants, name='contestantsid'),
+    path('contestants/<int:id>', views.contestants, name='contestantsid'),
     path('eventdetail',views.eventdetail , name='eventdetail'),
 
     path('dashboard',views.dashboard , name='dashboard'),
