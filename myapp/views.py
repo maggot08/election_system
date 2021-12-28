@@ -67,8 +67,13 @@ def handlesignup(request):
 def aboutus(request):
     return render(request, 'aboutus.html')
 
-def contestants(request):
-    return render(request, 'contestants.html')
+def contestants(request, slug):
+    contestant=Contestant.objects.filter(event=slug)
+    context={
+        'contestants':contestant
+    }
+
+    return render(request, 'contestants.html', context)
 
 def events(request):
     event=Event.objects.all()

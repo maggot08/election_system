@@ -11,11 +11,11 @@ class Addeventform(forms.ModelForm):
         model=Event
         fields=['event_name','event_catagory', 'event_image','event_startdate','event_enddate']
         widgets= {
-            'event_name':forms.TextInput(attrs={'class':'form-control'},),
-            'event_catagory':forms.TextInput(attrs={'class':'form-control'}),
-            'event_image':forms.FileInput(attrs={'class':'form-control'}),
-            'event_startdate':forms.TextInput(attrs={'class':'form-control', 'type':'date'}),
-            'event_enddate':forms.TextInput(attrs={'class':'form-control', 'type':'date'}),
+            'event_name':forms.TextInput(attrs={'class':'form-control w-50'},),
+            'event_catagory':forms.TextInput(attrs={'class':'form-control w-50'}),
+            'event_image':forms.FileInput(attrs={'class':'form-control w-50'}),
+            'event_startdate':forms.TextInput(attrs={'class':'form-control w-50', 'type':'date'}),
+            'event_enddate':forms.TextInput(attrs={'class':'form-control w-50', 'type':'date'}),
         }
 
 

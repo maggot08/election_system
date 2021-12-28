@@ -19,4 +19,3 @@ class Contestant(models.Model):
     contestant_age=models.CharField(max_length=30)
     contentant_height=models.CharField(max_length=30)
 
-
