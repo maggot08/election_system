@@ -68,10 +68,7 @@ def aboutus(request):
     return render(request, 'aboutus.html')
 
 def contestants(request, id):
-    try:
-        contestant=Contestant.objects.get(pk=id)
-    except Contestant.DoesNotExist:
-        contestant=None
+    contestant=Contestant.objects.filter(event_id=id)
     context={
         'contestants':contestant
     }
