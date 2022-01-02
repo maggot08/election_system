@@ -22,7 +22,7 @@
                         <div class="card-body">
                             <h4 class="card-title mb-4" >{{contestant.contestant_name}}</h4>
                             <div class="btn-wrapper text-center d-flex justify-content-between">
-                                {% if votings.is_voted %}
+                                {% if user.voted.is_voted %}
                                 <a class="btn btn-sm btn-primary d-flex align-items-center" disabled>Vote Me</a>
                                 
                                 {% endif %}
