@@ -21,10 +21,10 @@
                         <div class="card-body">
                             <h4 class="card-title mb-4" >{{contestant.contestant_name}}</h4>
                             <div class="btn-wrapper text-center d-flex justify-content-between">
-                                <a href="/contestants" class="btn btn-sm btn-primary d-flex align-items-center">Vote Me</a>
+                                <a href="{% url 'voted' contestant.id %}" class="btn btn-sm btn-primary d-flex align-items-center">Vote Me</a>
                                 <br>
-                                <br>   
-                                <a href="/profile" class="btn btn-sm btn-primary d-flex align-items-center">View Profile</a>
+                                <br>
+                                <a href="/contestant_profile" class="btn btn-sm btn-primary d-flex align-items-center">View Profile</a>
                             </div> 
                         </div>
                     </div>

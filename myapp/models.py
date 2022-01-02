@@ -18,4 +18,15 @@ class Contestant(models.Model):
     contestant_image=models.ImageField(blank=True, null=True, upload_to="contestantimages/")
     contestant_age=models.CharField(max_length=30)
     contentant_height=models.CharField(max_length=30)
+    def __str__(self):
+        return str(self.contestant_id)
+
+class Voted(models.Model):
+    is_voted=models.BooleanField(default=False)
+    count=models.IntegerField(default=0)
+    contestant=models.ForeignKey(Contestant,on_delete=models.CASCADE)
+    def __str__(self):
+        return str(self.contestant)
+
+
 

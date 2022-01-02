@@ -86,6 +86,9 @@ def events(request):
 def howitworks(request):
     return render(request, 'howitworks.html')
 
+def contestant_profile(request):
+    return render(request, 'contestant_profile.html')
+
 def eventdetail(request):
     return render(request, 'eventdetail.html')
 
@@ -114,13 +117,13 @@ def event(request):
     }
     return render(request, 'dashboard/event.html',context)
 
-def profile(request):
+def adminprofile(request):
     if request.user.is_authenticated and request.user.is_superuser:
         pass
     else:
         messages.warning(request, "You are not Authorized to access this page!!")    
         return redirect("/")
-    return render(request, 'dashboard/profile.html')
+    return render(request, 'dashboard/adminprofile.html')
 
 def addevent(request):
     if request.user.is_authenticated and request.user.is_superuser:
@@ -178,3 +181,13 @@ def contestant(request):
         form=Contestantfrom()
 
     return render(request, 'dashboard/contestanttable.html',{'form':form})
+
+def voted(request, id):
+    contestant=Contestant.objects.get(pk=id)
+    is_voted=True
+    count=+1
+    isvoted=Voted(is_voted= is_voted, count= count, contestant=contestant)
+    isvoted.save()
+    messages.success(request, "Your vote is successful!!!")    
+
+    return redirect ('/index')

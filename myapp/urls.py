@@ -15,19 +15,21 @@ urlpatterns = [
     path('aboutus',views.aboutus , name='aboutus'),
     path('events',views.events , name='events'),
     path('howitworks',views.howitworks , name='howitworks'),
-    path('contestants',views.contestants , name='contestants'),
     path('contestants/<int:id>', views.contestants, name='contestantsid'),
     path('eventdetail',views.eventdetail , name='eventdetail'),
+    path('contestant_profile',views.contestant_profile, name="contestant_profile"),
+
 
     path('dashboard',views.dashboard , name='dashboard'),
     path('logout',views.handlelogout , name='handlelogout'),
     path('event',views.event, name="event"),
-    path('profile',views.profile, name="profile"),
+    path('adminprofile',views.adminprofile, name="adminprofile"),
 
     path('addevent',views.addevent, name="addevent"),
     path('editevent/<int:id>',views.editevent, name="editevent"),
     path('deleteevent/<event_id>',views.deleteevent, name="deleteevent"),
     path('contestanttable',views.contestant, name="contestant"),
     
-
+    path('isvoted/<int:id>',views.voted,name='voted'),
+    
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
