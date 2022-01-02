@@ -24,7 +24,7 @@ class Contestant(models.Model):
 
 class Voted(models.Model):
     is_voted=models.BooleanField(default=False)
-    user=models.OneToOneField(User,on_delete=CASCADE)
+    voting_user=models.OneToOneField(User,on_delete=CASCADE)
     count=models.IntegerField(default=0)
     contestant=models.ForeignKey(Contestant,on_delete=models.CASCADE)
     def __str__(self):

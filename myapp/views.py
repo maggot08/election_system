@@ -78,14 +78,16 @@ def contestants(request, id):
     return render(request, 'contestants.html', context)
 
 def voted(request, id):
-    contestant=Contestant.objects.get(pk=id)
-    user=request.user.id
-    is_voted=True
-    count=+1
-    isvoted=Voted(is_voted= is_voted, user= user, count= count, contestant=contestant)
-    isvoted.save()
-    messages.success(request, "Your vote is successful!!!")
-    
+    if request.user.is_authenticated:
+        contestant=Contestant.objects.get(pk=id)
+        user=request.user
+        is_voted=True
+        count=+1
+        isvoted=Voted(is_voted= is_voted, voting_user= user, count= count, contestant=contestant)
+        isvoted.save()
+        messages.success(request, "Your vote is successful!!!")
+    else:
+        messages.success(request, "First Login To Vote!!!")
     return redirect ('/events')
 
 def events(request):
