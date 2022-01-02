@@ -1,11 +1,12 @@
 {% extends 'dashboard/main.html' %}
-{% block title %}Dashboard | Events{% endblock title %}
+{% block title %}Dashboard | Contestants{% endblock title %}
 {% block body %}
 
 <!-- Table Content -->
+{% for event in events %}
 <div class="container mb-5">
     <div class="container-fluid">
-        <h3 class="text-dark mb-4">Events</h3>
+        <h3 class="text-dark mb-4">{{event.event_name}}</h3>
         <div class="card shadow">
             <div class="row">
                 <div class="col-md-6 align-self-center m-4">
@@ -15,6 +16,7 @@
                     <a href="/addevent" type="button" class="btn btn-outline-danger text-allign-center">Add Event</a>
                 </div>
             </div>
+            {% endfor %}
 
 
             <div class="card-body">
@@ -50,7 +52,6 @@
                                 <th>Action</th>
                             </tr>
                         </thead>
-                        {% for event in events %}
                         <tbody>
                             <tr>
                                 <td>
@@ -68,7 +69,6 @@
                                 </td>
                             </tr>
                         </tbody>
-                        {% endfor %}
                         <tfoot>
                             <tr>
                                 <td><strong>Event Name</strong></td>
@@ -101,5 +101,6 @@
         </div>
     </div>
 </div>
+{% endfor %}
 </div>
 {% endblock body %}

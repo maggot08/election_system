@@ -1,5 +1,6 @@
 from django.db import models
-
+from django.contrib.auth.models import User
+from django.db.models.deletion import CASCADE
 # Create your models here.
 
 class Event(models.Model):
@@ -23,6 +24,7 @@ class Contestant(models.Model):
 
 class Voted(models.Model):
     is_voted=models.BooleanField(default=False)
+    user=models.OneToOneField(User,on_delete=CASCADE)
     count=models.IntegerField(default=0)
     contestant=models.ForeignKey(Contestant,on_delete=models.CASCADE)
     def __str__(self):

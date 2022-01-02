@@ -69,11 +69,24 @@ def aboutus(request):
 
 def contestants(request, id):
     contestant=Contestant.objects.filter(event_id=id)
+    voting=Voted.objects.all()
     context={
-        'contestants':contestant
+        'contestants':contestant,
+        'votings':voting
     }
 
     return render(request, 'contestants.html', context)
+
+def voted(request, id):
+    contestant=Contestant.objects.get(pk=id)
+    user=request.user.id
+    is_voted=True
+    count=+1
+    isvoted=Voted(is_voted= is_voted, user= user, count= count, contestant=contestant)
+    isvoted.save()
+    messages.success(request, "Your vote is successful!!!")
+    
+    return redirect ('/events')
 
 def events(request):
     event=Event.objects.all()
@@ -182,12 +195,3 @@ def contestant(request):
 
     return render(request, 'dashboard/contestanttable.html',{'form':form})
 
-def voted(request, id):
-    contestant=Contestant.objects.get(pk=id)
-    is_voted=True
-    count=+1
-    isvoted=Voted(is_voted= is_voted, count= count, contestant=contestant)
-    isvoted.save()
-    messages.success(request, "Your vote is successful!!!")    
-
-    return redirect ('/index')

@@ -13,6 +13,7 @@
     </div>
     <!-- Event Cards-->
         <div class="row row-cols-1 row-cols-md-5 g-4">
+            
             {% for contestant in contestants %}
             <div class="col">
                 <a href="#">
@@ -21,6 +22,10 @@
                         <div class="card-body">
                             <h4 class="card-title mb-4" >{{contestant.contestant_name}}</h4>
                             <div class="btn-wrapper text-center d-flex justify-content-between">
+                                {% if votings.is_voted %}
+                                <a class="btn btn-sm btn-primary d-flex align-items-center" disabled>Vote Me</a>
+                                
+                                {% endif %}
                                 <a href="{% url 'voted' contestant.id %}" class="btn btn-sm btn-primary d-flex align-items-center">Vote Me</a>
                                 <br>
                                 <br>
@@ -30,6 +35,7 @@
                     </div>
                 </a>
             </div>
+            
             {% endfor %}
         </div>
     </div>
