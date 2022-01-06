@@ -28,8 +28,16 @@ urlpatterns = [
     path('addevent',views.addevent, name="addevent"),
     path('editevent/<int:id>',views.editevent, name="editevent"),
     path('deleteevent/<event_id>',views.deleteevent, name="deleteevent"),
-    path('contestanttable',views.contestant, name="contestant"),
     
     path('isvoted/<int:id>',views.voted,name='voted'),
     
+    
+    
+    path('contestanttables/<int:id>', views.contestanttables, name="contestanttables"),
+    path('addcontestant',views.addcontestant, name="addcontestant"),
+    path('editcontestant/<int:id>',views.editcontestant, name="editcontestant"),
+    path('deletecontestant/<contestant_id>',views.deletecontestant, name="deletecontestant"),
+
+
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+

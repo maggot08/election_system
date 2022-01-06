@@ -1,0 +1,15 @@
+{% extends 'dashboard/main.html' %}
+{% block title %}Dashboard | Edit Contestant{% endblock title %}
+{% block body %}
+    <div class="container">
+        <div class="container-fluid">
+            <form action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{form.as_p}}
+                <input type="submit" value="Update" class="btn btn-primary">
+                <button type="button" class="btn btn-secondary" onclick="javascript:history.back();">Cancel</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock body %}

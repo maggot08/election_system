@@ -31,7 +31,7 @@ class Eventform(forms.ModelForm):
             'event_enddate':forms.TextInput(attrs={'class':'form-control  w-50', 'type':'date'}),
         }
 
-class Contestantfrom(forms.ModelForm):
+class Contestantform(forms.ModelForm):
     class Meta:
         model=Contestant
         fields=['contestant_id','event','contestant_name','contestant_image','contestant_age','contentant_height']
@@ -43,5 +43,8 @@ class Contestantfrom(forms.ModelForm):
             'contestant_age':forms.TextInput(attrs={'class':'form-control  w-50'}),
             'contentant_height':forms.TextInput(attrs={'class':'form-control  w-50'}),
         }
+
+
+
 
         

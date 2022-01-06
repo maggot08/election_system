@@ -7,7 +7,7 @@
         </a>
         <hr class="sidebar-divider my-0">
         <ul class="navbar-nav text-light" id="accordionSidebar">
-            <li class="nav-item"><a class="nav-link" href="dashboard"><i
+            <li class="nav-item"><a class="nav-link" href="/dashboard"><i
                         class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
             {% if user.is_superuser %}
 
@@ -17,8 +17,7 @@
             {% endif %}
             <li class="nav-item"><a class="nav-link" href="/event"><i
                         class="fas fa-user"></i><span>Events</span></a></li>
-            <li class="nav-item"><a class="nav-link" href="/contestanttable"><i
-                        class="fas fa-user"></i><span>Contestants</span></a></li>
+            
             {% comment %} <li class="nav-item"><a class="nav-link" href="#"><i {% endcomment %}
                         {% comment %} class="fas fa-user"></i><span>Results</span></a></li> {% endcomment %}
         </ul>

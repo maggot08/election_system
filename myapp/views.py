@@ -70,9 +70,11 @@ def aboutus(request):
 def contestants(request, id):
     contestant=Contestant.objects.filter(event_id=id)
     voting=Voted.objects.all()
+    event=Event.objects.all()
     context={
         'contestants':contestant,
-        'votings':voting
+        'votings':voting,
+        'events':event,
     }
 
     return render(request, 'contestants.html', context)
@@ -108,12 +110,19 @@ def eventdetail(request):
     return render(request, 'eventdetail.html')
 
 def dashboard(request):
+    contestant=Contestant.objects.all()
+    voting=Voted.objects.all()
     if request.user.is_authenticated and request.user.is_superuser:
         pass
     else:
         messages.warning(request, "You are not Authorized to access this page!!")    
         return redirect("/")
-    return render(request, 'dashboard/admindashboard.html')
+    context={
+        'contestants':contestant,
+        'votings':voting
+    }
+    
+    return render(request, 'dashboard/admindashboard.html', context)
 
 def handlelogout(request):
     logout(request)
@@ -179,21 +188,53 @@ def editevent(request, id):
     
     return render(request,'dashboard/editevent.html', {'event':event,'form':form})
 
-def contestant(request):
+def contestanttables(request, id):
+    contestant=Contestant.objects.filter(event_id=id)
+    voting=Voted.objects.all()
+    event=Event.objects.all()
+    context={
+        'contestants':contestant,
+        'votings':voting,
+        'events':event,
+    }
+
+    return render(request, 'dashboard/contestanttables.html', context)
+
+def addcontestant(request):
     if request.user.is_authenticated and request.user.is_superuser:
         pass
     else:
         messages.warning(request, "You are not Authorized to access this page!!")    
         return redirect("/")
     if request.method=="POST":
-        form=Contestantfrom(request.POST, request.FILES)
+        form=Contestantform(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            messages.success(request, "added successfully")
-            form=Contestantfrom()
-            return redirect("/contestanttable")
+            messages.success(request, "Contestant added successfully")
+            form=Contestantform()
+            return redirect("/contestanttables")
     else:
-        form=Contestantfrom()
+        form=Contestantform()
+    return render(request, 'dashboard/addcontestant.html',{'form':form})
 
-    return render(request, 'dashboard/contestanttable.html',{'form':form})
+def deletecontestant(request, contestant_id):
+    contestant=Contestant.objects.get(pk=contestant_id)
+    contestant.delete()
+
+    messages.warning(request, "contestant Deleted!!!")   
+    return redirect('contestanttables')
+
+def editcontestant(request, id):
+    if request.method=="POST":
+        contestant=Contestant.objects.get(pk=id)
+        form=Contestantform(request.POST, request.FILES, instance=contestant)
+        if form.is_valid:
+            form.save()
+            messages.success(request, "Contestant updated successfully!!!")
+            form=Contestantform()
+    else:
+        contestant=Contestant.objects.get(pk=id)
+        form=Contestantform(instance=contestant)
+    
+    return render(request,'dashboard/editcontestant.html', {'contestant':contestant,'form':form})
 

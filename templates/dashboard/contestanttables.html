@@ -3,22 +3,18 @@
 {% block body %}
 
 <!-- Table Content -->
-{% for event in events %}
 <div class="container mb-5">
     <div class="container-fluid">
-        <h3 class="text-dark mb-4">{{event.event_name}}</h3>
+        <h3 class="text-dark mb-4">Contestants</h3>
         <div class="card shadow">
             <div class="row">
                 <div class="col-md-6 align-self-center m-4">
-                    <p class="text-primary m-0 fw-bold">Events Table</p>
+                    <p class="text-primary m-0 fw-bold">Contestants Table</p>
                 </div>
                 <div class="col-sm-5 m-2 d-lg-flex justify-content-lg-end">
-                    <a href="/addevent" type="button" class="btn btn-outline-danger text-allign-center">Add Event</a>
+                    <a href="/addcontestant" type="button" class="btn btn-outline-danger text-allign-center">Add Contestant</a>
                 </div>
             </div>
-            {% endfor %}
-
-
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-6 text-nowrap">
@@ -36,46 +32,47 @@
                     </div>
                     <div class="col-md-6">
                         <div class="text-md-end dataTables_filter" id="dataTable_filter">
-                            <label class="form-label"><input type="search" class="form-control form-control-sm" aria-controls="dataTable" placeholder="Search"></label>
+                            <label class="form-label"><input id="myInput" onkeyup="myFunction()" type="text" class="form-control form-control-sm" placeholder="Search"></label>
                         </div>
                     </div>
                 </div>
-                <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
-                    <table class="table my-0" id="dataTable">
+                <div class="table-responsive table mt-2" role="grid" aria-describedby="dataTable_info">
+                    <table class="table my-0" id="myTable">
                         <thead>
                             <tr>
-                                <th>Event Name</th>
-                                <th>Catagory</th>
-                                <th>Event Image</th>
-                                <th>Start date</th>
-                                <th>End Date</th>
+                                <th>Contestant ID</th>
+                                <th>Contestant Name</th>
+                                <th>Age</th>
+                                <th>Height</th>
+                                <th>Image</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
+                        {% for contestant in contestants %}
                         <tbody>
                             <tr>
                                 <td>
-                                    <img src="{{event.event_image.url}}" width="20">
-                                    <a href=" " class="text-decoration-none">
-                                        {{event.event_name}}</a>
+                                    <img src="{{contestant.contestant_image.url}}" width="20">
+                                    <strong>{{contestant.contestant_id}}</strong>
                                 </td>
-                                <td>{{event.event_catagory}}</td>
-                                <td>{{event.event_image}}</td>
-                                <td>{{event.event_startdate}}</td>
-                                <td>{{event.event_enddate}}</td>
+                                <td>{{contestant.contestant_name}}</td>
+                                <td>{{contestant.contestant_age}}</td>
+                                <td>{{contestant.contentant_height}}</td>
+                                <td>{{contestant.contestant_image}}</td>
                                 <td>
-                                    <a href="{% url 'editevent' event.id %}" class="btn btn-outline-primary"><i class="fa fa-edit"></i>  Edit</a>
-                                    <a type="button"  href="{% url 'deleteevent' event.id %}" class="btn btn-danger"><i class="fa fa-trash" ></i>  Delete</a>
+                                    <a href="{% url 'editcontestant' contestant.id %}" class="btn btn-outline-primary"><i class="fa fa-edit"></i>  Edit</a>
+                                    <a type="button"  href="{% url 'deletecontestant' contestant.id %}" class="btn btn-outline-danger"><i class="fa fa-trash" ></i>  Delete</a>
                                 </td>
                             </tr>
                         </tbody>
+                        {% endfor %}
                         <tfoot>
                             <tr>
-                                <td><strong>Event Name</strong></td>
-                                <td><strong>Catagory</strong></td>
-                                <td><strong>Event Image</strong></td>
-                                <td><strong>Start date</strong></td>
-                                <td><strong>End Date</strong></td>
+                                <td><strong>Contestant ID</strong></td>
+                                <td><strong>Contestant Name</strong></td>
+                                <td><strong>Age</strong></td>
+                                <td><strong>Height</strong></td>
+                                <td><strong>Image</strong></td>
                                 <td><strong>Action</strong></td>
                             </tr>
                         </tfoot>
@@ -101,6 +98,30 @@
         </div>
     </div>
 </div>
-{% endfor %}
 </div>
+<script>
+    function myFunction() {
+      var input, filter, table, tr, td, i, txtValue;
+      input = document.getElementById("myInput");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("myTable");
+      tr = table.getElementsByTagName("tr");
+      for (i = 0; i < tr.length; i++) 
+      {
+        td = tr[i].getElementsByTagName("td")[1];
+        if (td) {
+          txtValue = td.textContent || td.innerText;
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }       
+      }
+    }
+</script>
+
 {% endblock body %}
+
+
+    
