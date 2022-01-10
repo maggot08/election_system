@@ -90,7 +90,7 @@ def voted(request, id):
         messages.success(request, "Your vote is successful!!!")
     else:
         messages.success(request, "First Login To Vote!!!")
-    return redirect ('/events')
+    return redirect ('/login')
 
 def events(request):
     event=Event.objects.all()
