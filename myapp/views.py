@@ -86,11 +86,13 @@ def voted(request, id):
         is_voted=True
         count=+1
         isvoted=Voted(is_voted= is_voted, voting_user= user, count= count, contestant=contestant)
+        print (contestant.contestant_name)
         isvoted.save()
         messages.success(request, "Your vote is successful!!!")
+        return redirect ('/events')    
     else:
         messages.success(request, "First Login To Vote!!!")
-    return redirect ('/login')
+        return redirect ('/login')
 
 def events(request):
     event=Event.objects.all()
@@ -148,6 +150,22 @@ def adminprofile(request):
         messages.warning(request, "You are not Authorized to access this page!!")    
         return redirect("/")
     return render(request, 'dashboard/adminprofile.html')
+
+def voteresults(request):
+    event=Event.objects.all()
+    context={
+        'events':event
+    }
+    return render(request, 'dashboard/vote_results.html', context)
+
+def results(request):
+    voting=Voted.objects.all().distinct
+    
+
+    context={
+        'votings':voting,
+    }
+    return render(request, 'dashboard/result_chart.html', context)
 
 def addevent(request):
     if request.user.is_authenticated and request.user.is_superuser:
@@ -210,9 +228,9 @@ def addcontestant(request):
         form=Contestantform(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            messages.success(request, "Contestant added successfully")
+            messages.success(request, "Contestant added successfully!!!")
             form=Contestantform()
-            return redirect("/contestanttables")
+            return redirect("/event")
     else:
         form=Contestantform()
     return render(request, 'dashboard/addcontestant.html',{'form':form})
@@ -232,6 +250,7 @@ def editcontestant(request, id):
             form.save()
             messages.success(request, "Contestant updated successfully!!!")
             form=Contestantform()
+            return redirect("/event")
     else:
         contestant=Contestant.objects.get(pk=id)
         form=Contestantform(instance=contestant)

@@ -1,0 +1,74 @@
+{% extends 'dashboard/main.html' %}
+{% block title %}Dashboard | Home{% endblock title %}
+{% block body %}
+<div class="container container-fluid" style="margin-top:40px; margin-bottom:80px">
+    <div class="row">
+        <div class="col-lg-8 col-xl-12">
+            <div class="card shadow mb-4">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h6 class="text-primary fw-bold m-0">Result</h6>
+                </div>
+                <div class="card-body">
+                    <div class="col-md-6 my-4">
+                        <div class="bg-white">
+                            <ul class="list-group mb-5">
+                                {% for voting in votings %}
+                                <li class="list-group-item">
+                                    {{ voting.contestant.contestant_name }}  <span class="badge bg-success float-end ">{{ voting.count }} vote{{ voting.count | pluralize }}</span>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                            <div class="card-body">
+
+
+                                <canvas id="myChart" width="1200" height="500"></canvas>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<script>
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: [{% for voting in votings %} '{{voting.contestant.contestant_name}}',{% endfor %}],
+        datasets: [{
+        label: 'Votes',
+        data: [{% for voting in votings %} '{{ voting.count }}', {% endfor %}],
+        backgroundColor: [
+            'rgba(255, 99, 132, 1)',
+            'rgba(54, 162, 235, 1)',
+            'rgba(255, 206, 86, 1)',
+            'rgba(75, 192, 192, 1)',
+            'rgba(153, 102, 255, 1)',
+            'rgba(255, 159, 64, 1)'
+        ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+            ],
+                borderWidth: 1
+            }]
+        },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+    });
+</script>
+{% endblock body %}

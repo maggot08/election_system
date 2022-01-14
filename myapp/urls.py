@@ -24,6 +24,9 @@ urlpatterns = [
     path('logout',views.handlelogout , name='handlelogout'),
     path('event',views.event, name="event"),
     path('adminprofile',views.adminprofile, name="adminprofile"),
+    path('voteresults', views.voteresults, name="voteresults"),
+    path('result', views.results, name="results"),
+
 
     path('addevent',views.addevent, name="addevent"),
     path('editevent/<int:id>',views.editevent, name="editevent"),

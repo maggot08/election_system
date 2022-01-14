@@ -1,0 +1,22 @@
+{% extends 'dashboard/main.html' %}
+{% block title %}Dashboard | Home{% endblock title %}
+{% block body %}
+<div class="container container-fluid" style="margin-top:80px; margin-bottom:80px">
+    <div class="row row-cols-1 row-cols-md-4 g-4">
+            {% for event in events %}
+            <div class="col">
+                <div class="card" style="width: 200px;">
+                    <img class="card-img-top ig-thumbnail" src="{{event.event_image.url}}" alt="Card image" style="maxwidth:100%; height: 200px;">
+                    <div class="card-body">
+                        <h4 class="card-title fs-4 fb">{{event.event_name}}</h4>
+                        <p class="card-text">{{event.event_catagory}}</p>
+                        <a href="/result" class="btn btn-primary">Vote Results</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+</div>
+{% endblock body %}

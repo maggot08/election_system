@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block title %}Event | {% endblock title %}
+{% block title %}Event | Events{% endblock title %}
 {% block body %}
 
 <div class="container container-fluid" style="margin-top:80px; margin-bottom:80px">
@@ -9,31 +9,27 @@
         </div>
     </div>
     <!-- Event Cards-->
-        <div class="row row-cols-1 row-cols-md-5 g-4">
-            {% for contestant in contestants %}
-            <div class="col">
-                <a href="/index">
-                    <div class="card" style="width:200px">
-                        <img class="card-img-top" src="{{contestant.contestant_image.url}}" alt="Card image" style="width:100%; height: 200px;">
-                        <div class="card-body">
-                            <h4 class="card-title mb-4" >{{contestant.contestant_name}}</h4>
-                            <div class="btn-wrapper text-center d-flex justify-content-between">
-                                {% if user.voted.is_voted %}
-                                <a class="btn btn-sm btn-primary d-flex align-items-center" disabled>Voted</a>
-                                {% else %}
-                                <a href="{% url 'voted' contestant.id %}" class="btn btn-sm btn-primary d-flex align-items-center">Vote Me</a>
-                                {% endif %}
-                                <br>
-                                <br>
-                                <a href="/contestant_profile" class="btn btn-sm btn-success d-flex align-items-center">View Profile</a>
-                            </div> 
-                        </div>
+    <div class="row g-4">
+        {% for contestant in contestants %}
+            <div class="col-md-3 col-xl-3">
+                <div class="card" style="width:200px">
+                    <img class="card-img-top" src="{{contestant.contestant_image.url}}" alt="Card image" style="width:100%; height: 200px;">
+                    <div class="card-body">
+                        <h4 class="card-title mb-4" >{{contestant.contestant_name}}</h4>
+                        <div class="btn-wrapper text-center d-flex justify-content-between">
+                            {% if user.voted.is_voted %}
+                            <a class="btn btn-sm btn-primary d-flex align-items-center" disabled>Voted</a>
+                            {% else %}
+                            <a href="{% url 'voted' contestant.id %}" class="btn btn-sm btn-primary d-flex align-items-center">Vote Me</a>
+                            {% endif %}
+                            <br>
+                            <br>
+                            <a href="/contestant_profile" class="btn btn-sm btn-success d-flex align-items-center">View Profile</a>
+                        </div> 
                     </div>
-                </a>
+                </div>
             </div>
-            {% endfor %}
-        </div>
+        {% endfor %}
     </div>
 </div>
-
 {% endblock body %}
