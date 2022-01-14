@@ -161,7 +161,6 @@ def voteresults(request):
 def results(request):
     voting=Voted.objects.all().distinct
     
-
     context={
         'votings':voting,
     }
