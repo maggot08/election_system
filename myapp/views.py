@@ -4,6 +4,7 @@ from django.contrib.auth import authenticate,login,logout
 from django.shortcuts import redirect, render, HttpResponse, HttpResponseRedirect
 from django.contrib import messages
 from myapp.form import *
+import pdb 
 
 # Create your views here.
 def home(request):
@@ -82,14 +83,17 @@ def contestants(request, id):
 def voted(request, id):
     if request.user.is_authenticated:
         contestant=Contestant.objects.get(pk=id)
+        pdb.set_trace()
+
+        #vote_count=Voted.objects.filter('count')
         user=request.user
         is_voted=True
         count=+1
-        isvoted=Voted(is_voted= is_voted, voting_user= user, count= count, contestant=contestant)
+        is_voted=Voted(is_voted= is_voted, voting_user= user, count=count, contestant=contestant)
         print (contestant.contestant_name)
-        isvoted.save()
+        count.save()
         messages.success(request, "Your vote is successful!!!")
-        return redirect ('/events')    
+        return redirect ('/events')     
     else:
         messages.success(request, "First Login To Vote!!!")
         return redirect ('/login')
@@ -158,11 +162,14 @@ def voteresults(request):
     }
     return render(request, 'dashboard/vote_results.html', context)
 
-def results(request):
-    voting=Voted.objects.all().distinct
-    
+def results(request, id):
+    voting=Voted.objects.all()
+    #if Voted.objects.filter(Contestant.contestant_id)
+    contestant=Contestant.objects.filter(event_id=id)
+
     context={
         'votings':voting,
+        'contestants':contestant,
     }
     return render(request, 'dashboard/result_chart.html', context)
 

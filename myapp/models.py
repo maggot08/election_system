@@ -8,8 +8,8 @@ class Event(models.Model):
     event_name=models.CharField(max_length=30)
     event_catagory=models.CharField(max_length=30)
     event_image=models.ImageField(blank=True, null=True, upload_to="eventimages/")
-    event_startdate=models.CharField(max_length=30)
-    event_enddate=models.CharField(max_length=30)
+    event_startdate=models.DateField(blank=True)
+    event_enddate=models.DateField(blank=True)
     slug=AutoSlugField(populate_from='event_name')
 
     def __str__(self):
@@ -22,16 +22,18 @@ class Contestant(models.Model):
     contestant_image=models.ImageField(blank=True, null=True, upload_to="contestantimages/")
     contestant_age=models.CharField(max_length=30)
     contentant_height=models.CharField(max_length=30)
+    
     def __str__(self):
         return str(self.contestant_name)
 
 class Voted(models.Model):
     is_voted=models.BooleanField(default=False)
-    voting_user=models.OneToOneField(User,on_delete=CASCADE)
+    voting_user=models.OneToOneField(User,on_delete=models.CASCADE)
     count=models.IntegerField(default=0)
     contestant=models.ForeignKey(Contestant,on_delete=models.CASCADE)
+    event=models.ForeignKey(Event,on_delete=models.CASCADE)
     def __str__(self):
-        return f'{self.count}--{self.contestant.contestant_name}'
+        return f'{self.count}--{self.contestant.contestant_name}--{self.event.event_name}'
 
 
 

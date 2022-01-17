@@ -10,7 +10,8 @@
                     <div class="card-body">
                         <h4 class="card-title fs-4 fb">{{event.event_name}}</h4>
                         <p class="card-text">{{event.event_catagory}}</p>
-                        <a href="/result" class="btn btn-primary">Vote Results</a>
+                        {{event.id}}
+                        <a href="{% url 'results' event.id %}" class="btn btn-primary">Vote Results</a>
                     </div>
                 </div>
             </div>
