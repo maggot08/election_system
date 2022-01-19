@@ -2,6 +2,8 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.deletion import CASCADE
 from autoslug import AutoSlugField
+from django.contrib.postgres.fields import ArrayField
+
 # Create your models here.
 
 class Event(models.Model):
@@ -31,9 +33,10 @@ class Voted(models.Model):
     voting_user=models.OneToOneField(User,on_delete=models.CASCADE)
     count=models.IntegerField(default=0)
     contestant=models.ForeignKey(Contestant,on_delete=models.CASCADE)
-    event=models.ForeignKey(Event,on_delete=models.CASCADE)
-    def __str__(self):
-        return f'{self.count}--{self.contestant.contestant_name}--{self.event.event_name}'
+    event=ArrayField(models.ForeignKey(Event,on_delete=models.CASCADE),size=20)
+
+    # def __str__(self):
+    #     return f'{self.count}--{self.contestant.contestant_name}--{self.event.event_name}'
 
 
 

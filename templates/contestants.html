@@ -17,7 +17,7 @@
                     <div class="card-body">
                         <h4 class="card-title mb-4" >{{contestant.contestant_name}}</h4>
                         <div class="btn-wrapper text-center d-flex justify-content-between">
-                            {% if user.voted.is_voted %}
+                            {% if voted %}
                             <a class="btn btn-sm btn-primary d-flex align-items-center" disabled>Voted</a>
                             {% else %}
                             <a href="{% url 'voted' contestant.id %}" class="btn btn-sm btn-primary d-flex align-items-center">Vote Me</a>

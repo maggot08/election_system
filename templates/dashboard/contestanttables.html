@@ -40,11 +40,9 @@
                     <table class="table my-0" id="myTable">
                         <thead>
                             <tr>
-                                <th>Contestant ID</th>
                                 <th>Contestant Name</th>
                                 <th>Age</th>
                                 <th>Height</th>
-                                <th>Image</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -53,29 +51,19 @@
                             <tr>
                                 <td>
                                     <img src="{{contestant.contestant_image.url}}" width="20">
-                                    <strong>{{contestant.contestant_id}}</strong>
+                                    <strong>{{contestant.contestant_name}}</strong>
                                 </td>
-                                <td>{{contestant.contestant_name}}</td>
                                 <td>{{contestant.contestant_age}}</td>
                                 <td>{{contestant.contentant_height}}</td>
-                                <td>{{contestant.contestant_image}}</td>
                                 <td>
-                                    <a href="{% url 'editcontestant' contestant.id %}" class="btn btn-outline-primary"><i class="fa fa-edit"></i>  Edit</a>
-                                    <a type="button"  href="{% url 'deletecontestant' contestant.id %}" class="btn btn-outline-danger"><i class="fa fa-trash" ></i>  Delete</a>
+                                    <a href="{% url 'editcontestant' contestant.id %}" class="btn btn-outline-primary"><i class="fa fa-edit"></i> </a>
+                                    |
+                                    <a type="button"  href="{% url 'deletecontestant' contestant.id %}" class="btn btn-outline-danger"><i class="fa fa-trash" ></i></a>
                                 </td>
                             </tr>
                         </tbody>
                         {% endfor %}
-                        <tfoot>
-                            <tr>
-                                <td><strong>Contestant ID</strong></td>
-                                <td><strong>Contestant Name</strong></td>
-                                <td><strong>Age</strong></td>
-                                <td><strong>Height</strong></td>
-                                <td><strong>Image</strong></td>
-                                <td><strong>Action</strong></td>
-                            </tr>
-                        </tfoot>
+                        
                     </table>
                 </div>
                 <div class="row">

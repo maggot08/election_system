@@ -70,12 +70,23 @@ def aboutus(request):
 
 def contestants(request, id):
     contestant=Contestant.objects.filter(event_id=id)
+    current_user = request.user
+    user_id = current_user.id
+    vote = Voted.objects.filter(voting_user_id=user_id)
+    vote_details = vote.values('event_id')[0]['event_id']
+    # voted = vote.values('is_voted')[0]['is_voted']
+    if vote_details == id:
+        user_voted = True
+    else:
+        user_voted = False 
+    # pdb.set_trace()
     voting=Voted.objects.all()
     event=Event.objects.all()
     context={
         'contestants':contestant,
         'votings':voting,
         'events':event,
+        'voted': user_voted,
     }
 
     return render(request, 'contestants.html', context)
@@ -83,15 +94,23 @@ def contestants(request, id):
 def voted(request, id):
     if request.user.is_authenticated:
         contestant=Contestant.objects.get(pk=id)
-        pdb.set_trace()
+        event=Event.objects.get(pk=int(request.META.get('HTTP_REFERER').split('/')[-1]))
+        previous_count = Voted.objects.filter(contestant_id=id)
+        if len(previous_count) > 0:
+            count = previous_count.values('count')[0]['count']
+            obj = Voted.objects.filter(contestant_id=id).update(count=count+1)
+            # obj.count = count+1
+            # pdb.set_trace()
+            # obj.save()
+        else:
+            #vote_count=Voted.objects.filter('count')
+            user=request.user
+            is_voted=True
+            count=1
+            isvoted=Voted(is_voted= is_voted, voting_user= user, count=count, contestant=contestant, event=event)
+            print (contestant.contestant_name)
+            isvoted.save()
 
-        #vote_count=Voted.objects.filter('count')
-        user=request.user
-        is_voted=True
-        count=+1
-        is_voted=Voted(is_voted= is_voted, voting_user= user, count=count, contestant=contestant)
-        print (contestant.contestant_name)
-        count.save()
         messages.success(request, "Your vote is successful!!!")
         return redirect ('/events')     
     else:
@@ -163,7 +182,7 @@ def voteresults(request):
     return render(request, 'dashboard/vote_results.html', context)
 
 def results(request, id):
-    voting=Voted.objects.all()
+    voting=Voted.objects.filter(event_id=id)
     #if Voted.objects.filter(Contestant.contestant_id)
     contestant=Contestant.objects.filter(event_id=id)
 
@@ -216,6 +235,7 @@ def contestanttables(request, id):
     contestant=Contestant.objects.filter(event_id=id)
     voting=Voted.objects.all()
     event=Event.objects.all()
+    
     context={
         'contestants':contestant,
         'votings':voting,
@@ -232,10 +252,12 @@ def addcontestant(request):
         return redirect("/")
     if request.method=="POST":
         form=Contestantform(request.POST, request.FILES)
+        
         if form.is_valid():
             form.save()
             messages.success(request, "Contestant added successfully!!!")
             form=Contestantform()
+            print (request.GET.get('event', ''))
             return redirect("/event")
     else:
         form=Contestantform()

@@ -44,7 +44,7 @@
                             <tr>
                                 <th>Event Name</th>
                                 <th>Catagory</th>
-                                <th>Event Image</th>
+                                {% comment %} <th>Event Image</th> {% endcomment %}
                                 <th>Start date</th>
                                 <th>End Date</th>
                                 <th>Action</th>
@@ -59,13 +59,14 @@
                                         {{event.event_name}}</a>
                                 </td>
                                 <td>{{event.event_catagory}}</td>
-                                <td>{{event.event_image}}</td>
+                                {% comment %} <td>{{event.event_image}}</td> {% endcomment %}
                                 <td>{{event.event_startdate}}</td>
                                 <td>{{event.event_enddate}}</td>
                                 <td>
-                                    <a href="{% url 'editevent' event.id %}" class="btn btn-outline-primary"><i class="fa fa-edit"></i>  Edit</a>
+                                    <a href="{% url 'editevent' event.id %}" class="btn btn-outline-primary"><i class="fa fa-edit"></i></a>
+                                    |
                                     <button type="button" data-bs-toggle="modal" data-bs-target="#delete-modal"
-                                    class="btn btn-danger"><i class="fa fa-trash" ></i>  Delete</button>
+                                    class="btn btn-danger"><i class="fa fa-trash" ></i> </button>
                                 </td>
                             </tr>
                         </tbody>
@@ -91,16 +92,6 @@
                         </div>
                         <!-- End Delete Event Button Modal -->
                         {% endfor %}
-                        <tfoot>
-                            <tr>
-                                <td><strong>Event Name</strong></td>
-                                <td><strong>Catagory</strong></td>
-                                <td><strong>Event Image</strong></td>
-                                <td><strong>Start date</strong></td>
-                                <td><strong>End Date</strong></td>
-                                <td><strong>Action</strong></td>
-                            </tr>
-                        </tfoot>
                     </table>
                 </div>
                 <div class="row">
