@@ -72,13 +72,22 @@ def contestants(request, id):
     contestant=Contestant.objects.filter(event_id=id)
     current_user = request.user
     user_id = current_user.id
+    # pdb.set_trace()
     vote = Voted.objects.filter(voting_user_id=user_id)
-    vote_details = vote.values('event_id')[0]['event_id']
-    # voted = vote.values('is_voted')[0]['is_voted']
-    if vote_details == id:
-        user_voted = True
+    if len(vote) > 0:
+
+        vote_details = vote.values('event_id')
+        event_id = []
+        for event in vote_details:
+            event_id.append(event['event_id'])
+        # voted = vote.values('is_voted')[0]['is_voted']
+        # pdb.set_trace()
+        if id in event_id:
+            user_voted = True
+        else:
+            user_voted = False 
     else:
-        user_voted = False 
+        user_voted= False
     # pdb.set_trace()
     voting=Voted.objects.all()
     event=Event.objects.all()
@@ -95,9 +104,10 @@ def voted(request, id):
     if request.user.is_authenticated:
         contestant=Contestant.objects.get(pk=id)
         event=Event.objects.get(pk=int(request.META.get('HTTP_REFERER').split('/')[-1]))
-        previous_count = Voted.objects.filter(contestant_id=id)
+        previous_count = Voted.objects.filter(voting_user_id=request.user.id)
+        # pdb.set_trace()
         if len(previous_count) > 0:
-            count = previous_count.values('count')[0]['count']
+            count = Voted.objects.filter(contestant_id=id).values('count')[0]['count']
             obj = Voted.objects.filter(contestant_id=id).update(count=count+1)
             # obj.count = count+1
             # pdb.set_trace()
@@ -105,6 +115,7 @@ def voted(request, id):
         else:
             #vote_count=Voted.objects.filter('count')
             user=request.user
+            pdb.set_trace()
             is_voted=True
             count=1
             isvoted=Voted(is_voted= is_voted, voting_user= user, count=count, contestant=contestant, event=event)
