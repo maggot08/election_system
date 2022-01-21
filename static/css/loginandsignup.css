@@ -1,0 +1,36 @@
+
+span.showpass
+{
+    position: absolute;
+    top: 68%;
+    right: 0px;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    background-size: cover;
+    cursor: pointer;
+}
+
+span.signupeye
+{
+    position: absolute;
+    top: 61%;
+    right: 443px;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    background-size: cover;
+    cursor: pointer;
+}
+
+span.signupeyerepeat
+{
+    position: absolute;
+    top: 61%;
+    right: 311px;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    background-size: cover;
+    cursor: pointer;
+}

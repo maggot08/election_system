@@ -22,6 +22,24 @@
               class="form-control rounded-0"
               id="password" name="password"
               placeholder="Enter your Valid Password."/>
+              <span class="showpass">
+                <i class="fa fa-eye" aria-hidden="true" id="eye" onclick="showHide()"></i>
+              </span>
+              <script>
+                var state = false;
+                function showHide(){
+                  if(state){
+                    document.getElementById("password").setAttribute("type","password");
+                    document.getElementById("eye").style.color='#7a797e';
+                    state = false;
+                  }
+                  else{
+                    document.getElementById("password").setAttribute("type","text");
+                    document.getElementById("eye").style.color='#5887ef';
+                    state = true;
+                  }
+                }
+              </script>
             <label >Password</label>
           </div>
           <button type="submit" class="btn btn-danger w-100 fs-5">

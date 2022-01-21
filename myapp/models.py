@@ -30,10 +30,10 @@ class Contestant(models.Model):
 
 class Voted(models.Model):
     is_voted=models.BooleanField(default=False)
-    voting_user=models.OneToOneField(User,on_delete=models.CASCADE)
+    voting_user_id=ArrayField(models.IntegerField())
     count=models.IntegerField(default=0)
     contestant=models.ForeignKey(Contestant,on_delete=models.CASCADE)
-    event=ArrayField(models.ForeignKey(Event,on_delete=models.CASCADE),size=20)
+    event=models.ForeignKey(Event,on_delete=models.CASCADE)
 
     # def __str__(self):
     #     return f'{self.count}--{self.contestant.contestant_name}--{self.event.event_name}'
