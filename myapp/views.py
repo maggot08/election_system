@@ -72,17 +72,21 @@ def contestants(request, id):
     contestant=Contestant.objects.filter(event_id=id)
     current_user = request.user
     user_id = current_user.id
-    # pdb.set_trace()
-    vote = Voted.objects.filter(voting_user_id=user_id)
+    vote = Voted.objects.filter(event_id=id)
     if len(vote) > 0:
-
-        vote_details = vote.values('event_id')
-        event_id = []
-        for event in vote_details:
-            event_id.append(event['event_id'])
+        user_ids = []
+        user_details = vote.values('voting_user_id')
+        for user in user_details:
+            for id in user['voting_user_id']:
+                user_ids.append(id)
+            # pdb.set_trace()
+        # event_id = []
+        # for event in vote_details:
+        #     event_id.append(event['event_id'])
         # voted = vote.values('is_voted')[0]['is_voted']
         # pdb.set_trace()
-        if id in event_id:
+        # pdb.set_trace()
+        if user_id in user_ids:
             user_voted = True
         else:
             user_voted = False 
@@ -105,20 +109,29 @@ def voted(request, id):
         contestant=Contestant.objects.get(pk=id)
         event=Event.objects.get(pk=int(request.META.get('HTTP_REFERER').split('/')[-1]))
         previous_count = Voted.objects.filter(voting_user_id=request.user.id)
+        # if len(previous_count) > 0:
+        vote = Voted.objects.filter(contestant_id=id)
         # pdb.set_trace()
-        if len(previous_count) > 0:
-            count = Voted.objects.filter(contestant_id=id).values('count')[0]['count']
-            obj = Voted.objects.filter(contestant_id=id).update(count=count+1)
+        if len(vote) > 0:
+            user_ids = []
+            user_details = vote.values('voting_user_id')
+            for user in user_details:
+                for id in user['voting_user_id']:
+                    user_ids.append(id)
+            # pdb.set_trace()
+            user_ids.append(request.user.id)
+            count = vote.values('count')[0]['count']
+            obj = vote.update(count=count+1, voting_user_id=user_ids)
             # obj.count = count+1
             # pdb.set_trace()
             # obj.save()
         else:
             #vote_count=Voted.objects.filter('count')
             user=request.user
-            pdb.set_trace()
+            # pdb.set_trace()
             is_voted=True
             count=1
-            isvoted=Voted(is_voted= is_voted, voting_user= user, count=count, contestant=contestant, event=event)
+            isvoted=Voted(is_voted= is_voted, voting_user_id= [user.id], count=count,contestant=contestant, event=event)
             print (contestant.contestant_name)
             isvoted.save()
 

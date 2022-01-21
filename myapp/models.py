@@ -1,3 +1,4 @@
+from email.policy import default
 from multiprocessing.dummy import Array
 from django.db import models
 from django.contrib.auth.models import User
@@ -32,6 +33,7 @@ class Contestant(models.Model):
 class Voted(models.Model):
     is_voted=models.BooleanField(default=False)
     voting_user_id=ArrayField(models.IntegerField())
+    # voting_user_id = models.ForeignKey(User, on_delete=models.CASCADE)
     count=models.IntegerField(default=0)
     contestant=models.ForeignKey(Contestant,on_delete=models.CASCADE)
     event=models.ForeignKey(Event,on_delete=models.CASCADE)
