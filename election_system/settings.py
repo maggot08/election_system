@@ -81,7 +81,7 @@ WSGI_APPLICATION = 'election_system.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'matadan_db',
+        'NAME': 'matadan4',
         'USER': 'postgres',
         'PASSWORD': 'roshan',
         'HOST': 'localhost',
