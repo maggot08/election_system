@@ -14,8 +14,10 @@
             <div class="col-md-3 col-xl-3">
                 <div class="card" style="width:200px">
                     <img class="card-img-top" src="{{contestant.contestant_image.url}}" alt="Card image" style="width:100%; height: 200px;">
-                    <div class="card-body">
-                        <h4 class="card-title mb-4" >{{contestant.contestant_name}}</h4>
+                    <div class="card-body" style="height: 80px;">
+                        <h4 class="card-title fs-5 fb" >{{contestant.contestant_name}}</h4>
+                    </div> 
+                    <div class="card-footer text-center">
                         <div class="btn-wrapper text-center d-flex justify-content-between">
                             {% if voted %}
                             <a class="btn btn-sm btn-primary d-flex align-items-center" disabled>Voted</a>
@@ -25,7 +27,7 @@
                             <br>
                             <br>
                             <a href="/contestant_profile" class="btn btn-sm btn-success d-flex align-items-center">View Profile</a>
-                        </div> 
+                        </div>
                     </div>
                 </div>
             </div>

@@ -13,18 +13,7 @@
     <link rel="stylesheet" href="{% static '/css/loginandsignup.css' %}">
   </head>
 <body class="home">
-{% include "nav.html" %}
-    {% if messages %}
-    {% for message in messages %}
-    <div class="alert alert-{{ message.tags }} mb-0 alert-dismissible fade show" role="alert">
-      <strong>{{ message }}</strong>
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
-
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    {% endfor %}
-    {% endif %}
+{% include "reset_password/resetnav.html" %}
 {% block body %}
 {% endblock body %}
 {% include "footer.html" %}

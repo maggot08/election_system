@@ -4,7 +4,6 @@ from django.contrib.auth import authenticate,login,logout
 from django.shortcuts import redirect, render, HttpResponse, HttpResponseRedirect
 from django.contrib import messages
 from myapp.form import *
-import pdb 
 
 # Create your views here.
 def home(request):
@@ -79,20 +78,12 @@ def contestants(request, id):
         for user in user_details:
             for id in user['voting_user_id']:
                 user_ids.append(id)
-            # pdb.set_trace()
-        # event_id = []
-        # for event in vote_details:
-        #     event_id.append(event['event_id'])
-        # voted = vote.values('is_voted')[0]['is_voted']
-        # pdb.set_trace()
-        # pdb.set_trace()
         if user_id in user_ids:
             user_voted = True
         else:
             user_voted = False 
     else:
         user_voted= False
-    # pdb.set_trace()
     voting=Voted.objects.all()
     event=Event.objects.all()
     context={
@@ -109,26 +100,19 @@ def voted(request, id):
         contestant=Contestant.objects.get(pk=id)
         event=Event.objects.get(pk=int(request.META.get('HTTP_REFERER').split('/')[-1]))
         previous_count = Voted.objects.filter(voting_user_id=request.user.id)
-        # if len(previous_count) > 0:
         vote = Voted.objects.filter(contestant_id=id)
-        # pdb.set_trace()
         if len(vote) > 0:
             user_ids = []
             user_details = vote.values('voting_user_id')
             for user in user_details:
                 for id in user['voting_user_id']:
                     user_ids.append(id)
-            # pdb.set_trace()
             user_ids.append(request.user.id)
             count = vote.values('count')[0]['count']
             obj = vote.update(count=count+1, voting_user_id=user_ids)
-            # obj.count = count+1
-            # pdb.set_trace()
-            # obj.save()
+
         else:
-            #vote_count=Voted.objects.filter('count')
             user=request.user
-            # pdb.set_trace()
             is_voted=True
             count=1
             isvoted=Voted(is_voted= is_voted, voting_user_id= [user.id], count=count,contestant=contestant, event=event)
@@ -161,6 +145,10 @@ def eventdetail(request):
 def dashboard(request):
     contestant=Contestant.objects.all()
     voting=Voted.objects.all()
+    totalcount = []
+    for i in voting:
+        totalcount.append(i.count)
+    totalvotecount = sum(totalcount)
     if request.user.is_authenticated and request.user.is_superuser:
         pass
     else:
@@ -168,7 +156,7 @@ def dashboard(request):
         return redirect("/")
     context={
         'contestants':contestant,
-        'votings':voting
+        'totalvotecount':totalvotecount
     }
     
     return render(request, 'dashboard/admindashboard.html', context)
@@ -207,7 +195,6 @@ def voteresults(request):
 
 def results(request, id):
     voting=Voted.objects.filter(event_id=id)
-    #if Voted.objects.filter(Contestant.contestant_id)
     contestant=Contestant.objects.filter(event_id=id)
 
     context={

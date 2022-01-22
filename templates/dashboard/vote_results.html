@@ -7,10 +7,11 @@
             <div class="col">
                 <div class="card" style="width: 200px;">
                     <img class="card-img-top ig-thumbnail" src="{{event.event_image.url}}" alt="Card image" style="maxwidth:100%; height: 200px;">
-                    <div class="card-body">
-                        <h4 class="card-title fs-4 fb">{{event.event_name}}</h4>
-                        <p class="card-text">{{event.event_catagory}}</p>
-                        {{event.id}}
+                    <div class="card-body" style="height: 110px;">
+                        <h4 class="card-title fs-5 fb">{{event.event_name}}</h4>
+                    
+                    </div>
+                    <div class="card-footer text-center">
                         <a href="{% url 'results' event.id %}" class="btn btn-primary">Vote Results</a>
                     </div>
                 </div>

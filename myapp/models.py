@@ -33,13 +33,12 @@ class Contestant(models.Model):
 class Voted(models.Model):
     is_voted=models.BooleanField(default=False)
     voting_user_id=ArrayField(models.IntegerField())
-    # voting_user_id = models.ForeignKey(User, on_delete=models.CASCADE)
     count=models.IntegerField(default=0)
     contestant=models.ForeignKey(Contestant,on_delete=models.CASCADE)
     event=models.ForeignKey(Event,on_delete=models.CASCADE)
 
-    # def __str__(self):
-    #     return f'{self.count}--{self.contestant.contestant_name}--{self.event.event_name}'
+    def __str__(self):
+        return f'{self.count}--{self.contestant.contestant_name}--{self.event.event_name}'
 
 
 

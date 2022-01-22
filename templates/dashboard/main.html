@@ -21,7 +21,7 @@
         {% for message in messages %}
         <div class="alert alert-{{ message.tags }} mb-0 alert-dismissible fade show" role="alert">
             <strong>{{ message }}</strong>
-            <button type="button" class="close bg-success bg-opacity-25" data-dismiss="alert" aria-label="Close" style="float:right;border:none;">
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
@@ -30,8 +30,7 @@
         {% block body %}    
         {% endblock body %}
     </div>
-    {% include "dashboard/footer.html" %}
-        <a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>    
+    {% include "dashboard/footer.html" %}    
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>

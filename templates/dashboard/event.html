@@ -12,7 +12,7 @@
                     <p class="text-primary m-0 fw-bold">Events Table</p>
                 </div>
                 <div class="col-sm-5 m-2 d-lg-flex justify-content-lg-end">
-                    <a href="/addevent" type="button" class="btn btn-outline-danger text-allign-center">Add Event</a>
+                    <a href="/addevent" type="button" class="btn btn-outline-danger">Add Event</a>
                 </div>
             </div>
 
@@ -44,7 +44,6 @@
                             <tr>
                                 <th>Event Name</th>
                                 <th>Catagory</th>
-                                {% comment %} <th>Event Image</th> {% endcomment %}
                                 <th>Start date</th>
                                 <th>End Date</th>
                                 <th>Action</th>
@@ -59,7 +58,6 @@
                                         {{event.event_name}}</a>
                                 </td>
                                 <td>{{event.event_catagory}}</td>
-                                {% comment %} <td>{{event.event_image}}</td> {% endcomment %}
                                 <td>{{event.event_startdate}}</td>
                                 <td>{{event.event_enddate}}</td>
                                 <td>
