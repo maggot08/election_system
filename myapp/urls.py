@@ -19,8 +19,8 @@ urlpatterns = [
     path('events',views.events , name='events'),
     path('howitworks',views.howitworks , name='howitworks'),
     path('contestants/<int:id>', views.contestants, name='contestantsid'),
-    path('eventdetail',views.eventdetail , name='eventdetail'),
-    path('contestant_profile',views.contestant_profile, name="contestant_profile"),
+    path('eventdetail/<int:id>',views.eventdetail , name='eventdetail'),
+    path('contestant_profile/<int:id>',views.contestant_profile, name="contestant_profile"),
     path('isvoted/<int:id>',views.voted,name='voted'),
 
     # Admin Dashboard urls

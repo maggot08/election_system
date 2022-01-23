@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% block title %}Event | Events{% endblock title %}
+{% block title %}{% for event in events %}Matadan | {{event.event_name}}{% endfor %}{% endblock title %}
 {% block body %}
 
 <div class="container container-fluid" style="margin-top:80px; margin-bottom:80px">
@@ -26,7 +26,7 @@
                             {% endif %}
                             <br>
                             <br>
-                            <a href="/contestant_profile" class="btn btn-sm btn-success d-flex align-items-center">View Profile</a>
+                            <a href="{% url 'contestant_profile' contestant.id %}" class="btn btn-sm btn-success d-flex align-items-center">View Profile</a>
                         </div>
                     </div>
                 </div>

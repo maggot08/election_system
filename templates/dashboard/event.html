@@ -5,8 +5,7 @@
 <!-- Table Content -->
 <div class="container mb-5">
     <div class="container-fluid">
-        <h3 class="text-dark mb-4">Events</h3>
-        <div class="card shadow">
+        <div class="card shadow mt-5">
             <div class="row">
                 <div class="col-md-6 align-self-center m-4">
                     <p class="text-primary m-0 fw-bold">Events Table</p>
@@ -53,7 +52,7 @@
                         <tbody>
                             <tr>
                                 <td>
-                                    <img src="{{event.event_image.url}}" width="20">
+                                    <img src="{{event.event_image.url}}" style="width:35px; height:35px" class="rounded-circle">
                                     <a href="{% url 'contestanttables' event.id %} " class="text-decoration-none">
                                         {{event.event_name}}</a>
                                 </td>

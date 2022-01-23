@@ -1,5 +1,27 @@
 {% extends 'base.html' %}
-{% block title %}Matadan | Events{% endblock title %}
+{% block title %} {% for contestant in contestants %}Matadan | {{contestant.contestant_name}}{% endfor %}{% endblock title %}
 {% block body %}
-
+{% for contestant in contestants %}
+<div class="container container-fluid" style="margin-top:80px; margin-bottom:80px">
+    <div>
+        <div class="row">
+            <div class="col-6">
+                <h1 class="text-dark mb-4">{{contestant.contestant_name}}</h1>
+                <div>
+                    <img src="{{contestant.contestant_image.url}}" style="width:375px; height:375px" class="rounded-circle">
+                </div>
+            </div>
+            <div class="col-6">
+                <div>
+                    <h1>About {{contestant.contestant_name}}</h1>
+                    <br>
+                    <p class="fs-5">
+                        {{contestant.contestant_detail}}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
 {% endblock body %}

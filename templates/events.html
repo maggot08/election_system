@@ -15,7 +15,7 @@
                         <a href="{% url 'contestantsid' event.id %}" class="card-title fs-5 fb">{{event.event_name}}</a>
                     </div>
                     <div class="card-footer text-center">
-                        <a href="/eventdetail" class="btn btn-primary">Event Details</a>
+                        <a href="{% url 'eventdetail' event.id %}" class="btn btn-primary">Event Details</a>
                         
                     </div>
                 </div>

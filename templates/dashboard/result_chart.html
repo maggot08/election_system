@@ -13,8 +13,7 @@
                         <div class="bg-white">
                             <ul class="list-group mb-5">
                                 {% for voting in votings %}
-                                <li class="list-group-item">
-                                    {{ voting.contestant.contestant_id }} | {{ voting.contestant.contestant_name }}  <span class="badge bg-success float-md-end ">{{ voting.count }} vote{{ voting.count | pluralize }}</span>
+                                <li class="list-group-item">{{ voting.contestant.contestant_name }}  <span class="badge bg-success float-md-end ">{{ voting.count }} vote{{ voting.count | pluralize }}</span>
                                 </li>
                                 {% endfor %}
                             </ul>

@@ -1,25 +1,28 @@
 {% extends 'base.html' %}
-{% block title %}Matadan | Mr.Nepal{% endblock title %}
+{% block title %} {% for event in events %}Matadan | {{event.event_name}}{% endfor %}{% endblock title %}
+
 {% block body %}
+{% for event in events %}
 <div class="container container-fluid" style="margin-top:80px; margin-bottom:80px">
     <div>
         <div class="row">
             <div class="col-6">
-                <h1 class="text-dark mb-4">Mister Nepal</h1>
+                <h1 class="text-dark mb-4">{{event.event_name}}</h1>
                 <div>
-                    <img src="static/img/mrnepal.jpg">
+                    <img src="{{event.event_image.url}}" style="width:375px; height:375px" class="rounded-circle">
                 </div>
             </div>
             <div class="col-6">
                 <div>
-                    <h1>About Mister Nepal</h1>
+                    <h1>About {{event.event_name}}</h1>
                     <br>
                     <p class="fs-5">
-                        The Mr. Nepal competition is a male beauty pageant organized by Expose Nepal. It was founded in 2002. The entrants compete in various activities including swimming, Extreme challenge and physique, Talent performances, mountain climbing, and marathon running. The current Mr. Nepal is Dr. Santosh Upadhyaya of Achham who was crowned on December 26, 2019 in Kathmandu, Nepal. Traditionally, Mr Nepal lives in Kathmandu during his reign.
+                        {{event.event_detail}}
                     </p>
                 </div>
             </div>
         </div>
     </div>
 </div>
+{% endfor %}
 {% endblock body %}

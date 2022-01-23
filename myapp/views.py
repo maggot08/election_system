@@ -1,4 +1,5 @@
 from django.contrib.auth.models import User
+from django.template import context
 from myapp.models import *
 from django.contrib.auth import authenticate,login,logout
 from django.shortcuts import redirect, render, HttpResponse, HttpResponseRedirect
@@ -136,11 +137,19 @@ def events(request):
 def howitworks(request):
     return render(request, 'howitworks.html')
 
-def contestant_profile(request):
-    return render(request, 'contestant_profile.html')
+def contestant_profile(request, id):
+    contestant=Contestant.objects.filter(pk=id)
+    context={
+        'contestants':contestant
+    }
+    return render(request, 'contestant_profile.html', context)
 
-def eventdetail(request):
-    return render(request, 'eventdetail.html')
+def eventdetail(request, id):
+    event=Event.objects.filter(pk=id)
+    context={
+        'events':event
+    }
+    return render(request, 'eventdetail.html',context)
 
 def dashboard(request):
     contestant=Contestant.objects.all()

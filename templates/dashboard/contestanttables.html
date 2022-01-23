@@ -5,8 +5,8 @@
 <!-- Table Content -->
 <div class="container mb-5">
     <div class="container-fluid">
-        <h3 class="text-dark mb-4">Contestants</h3>
-        <div class="card shadow">
+        {% comment %} <h3 class="text-dark mb-4">Contestants</h3> {% endcomment %}
+        <div class="card shadow mt-5">
             <div class="row">
                 <div class="col-md-6 align-self-center m-4">
                     <p class="text-primary m-0 fw-bold">Contestants Table</p>
@@ -43,6 +43,7 @@
                                 <th>Contestant Name</th>
                                 <th>Age</th>
                                 <th>Height</th>
+                                <th>Details</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -50,11 +51,12 @@
                         <tbody>
                             <tr>
                                 <td>
-                                    <img src="{{contestant.contestant_image.url}}" width="20">
+                                    <img src="{{contestant.contestant_image.url}}" style="width:35px; height:35px" class="rounded-circle">
                                     <strong>{{contestant.contestant_name}}</strong>
                                 </td>
                                 <td>{{contestant.contestant_age}}</td>
                                 <td>{{contestant.contentant_height}}</td>
+                                <td>{{contestant.contestant_detail|truncatechars:"40"}}</td>
                                 <td>
                                     <a href="{% url 'editcontestant' contestant.id %}" class="btn btn-outline-primary"><i class="fa fa-edit"></i> </a>
                                     |
