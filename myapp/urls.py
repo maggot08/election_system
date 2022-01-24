@@ -65,6 +65,10 @@ urlpatterns = [
         auth_views.PasswordResetCompleteView.as_view(template_name="reset_password/password_reset_done.html"), 
         name="password_reset_complete"),
 
-
+    #email verification
+    path('token_send', views.token_send, name="token_send"),
+    path('success', views.success, name="success"),
+    path('verify/<auth_token>', views.verify, name="verify"),
+    
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

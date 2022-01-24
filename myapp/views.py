@@ -1,3 +1,4 @@
+from email import message
 from django.contrib.auth.models import User
 from django.template import context
 from myapp.models import *
@@ -5,6 +6,11 @@ from django.contrib.auth import authenticate,login,logout
 from django.shortcuts import redirect, render, HttpResponse, HttpResponseRedirect
 from django.contrib import messages
 from myapp.form import *
+from django.conf import settings
+from django.core.mail import send_mail
+import uuid
+from datetime import datetime
+
 
 # Create your views here.
 def home(request):
@@ -15,29 +21,43 @@ def userlogin(request):
     return render(request, 'login.html')
 
 def handlelogin(request):
-    if request.method=="POST":
-        username=request.POST['username']
-        password=request.POST['password']
-        user=authenticate(username=username,password=password)
+    if request.method == "POST":
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(username = username, password = password)
+        profile_obj = Profile.objects.filter(user = user).first()
         if user is not None:
             login(request,user)
             if request.user.is_superuser:
                 messages.success(request, "Welcome to Admin Dashboard!!")
                 return redirect("/dashboard")
             else:
+                if not profile_obj.is_verified:
+                    messages.success(request,'Profile is not verified. Check your mail and try again.')
+                    return redirect('/login')
                 messages.warning(request, "Successfully Loged In as User!!")
                 return redirect("/events")
-        else:
+        if user is not None:
             messages.warning(request, "Invalid User")
             return redirect("/login")
+        
+
     return HttpResponse("404 NOT FOUND")
 
 def signup(request):
     return render(request, 'signup.html')
 
+def send_mail_after_registration(email, token):
+    subject = 'Verify your account.'
+    message = f'Go to this link to verify your account http://127.0.0.1:8000/verify/{token}'
+    email_from = settings.EMAIL_HOST_USER
+    recipient_list = [email]
+    send_mail(subject, message, email_from, recipient_list)
+    # mail= send_mail_after_registration(email, auth_token)
+    print(message)
 
 def handlesignup(request):
-    if request.method=="POST":
+    if request.method=="POST" or None:
         fname=request.POST['signupfname']
         lname=request.POST['signuplname']
         username=request.POST['signupusername']
@@ -47,10 +67,10 @@ def handlesignup(request):
         
         #check parameter
         if password!=password2:
-            messages.error(request, "Password didn't match.")
+            messages.warning(request, "Password didn't match.")
             return HttpResponseRedirect('/signup')
         if User.objects.filter(username=username).first():
-            messages.warning(request, "This username is already taken.")
+            messages.warning(request, "This username is already taken.") 
             return HttpResponseRedirect('/signup')
         if User.objects.filter(email=email).first():
             messages.warning(request, "E-mail is already exist")
@@ -61,7 +81,15 @@ def handlesignup(request):
         myuser.first_name=fname
         myuser.last_name=lname
         myuser.save()
-        return redirect('/login')
+        
+        #email-verification
+        auth_token = str(uuid.uuid4())
+        profile_obj = Profile.objects.create(user = myuser, auth_token = auth_token)
+        profile_obj.save()
+        send_mail_after_registration(email, auth_token)
+        
+        return redirect('/token_send') 
+
     else:
         return HttpResponse("404 error....")
     
@@ -126,8 +154,12 @@ def voted(request, id):
         messages.success(request, "First Login To Vote!!!")
         return redirect ('/login')
 
+# def event_complete():
+#     event = Event.objects.filter(event_enddate=datetime.now).first()
+
+
 def events(request):
-    event=Event.objects.all()
+    event=Event.objects.filter(event_enddate__gte=datetime.now())
     context={
         'events':event
     }
@@ -205,10 +237,11 @@ def voteresults(request):
 def results(request, id):
     voting=Voted.objects.filter(event_id=id)
     contestant=Contestant.objects.filter(event_id=id)
-
+    event = Event.objects.all()
     context={
         'votings':voting,
         'contestants':contestant,
+        'events':event,
     }
     return render(request, 'dashboard/result_chart.html', context)
 
@@ -304,3 +337,28 @@ def editcontestant(request, id):
         form=Contestantform(instance=contestant)
     
     return render(request,'dashboard/editcontestant.html', {'contestant':contestant,'form':form})
+
+
+
+def success(request):
+    return render(request, 'email_verification/success.html')
+
+def token_send(request):
+    return render(request, 'email_verification/token_send.html')
+
+def verify(request, auth_token):
+    try:
+        profile_obj = Profile.objects.filter(auth_token = auth_token).first()
+        if profile_obj:
+            if profile_obj.is_verified:
+                return redirect('/success')
+            profile_obj.is_verified = True
+            profile_obj.save()
+            
+        else:
+            messages.success(request, "Your account is not verified.")
+            return redirect('/login')
+    except Exception as e:
+        print(e) 
+        return redirect('/login')      
+

@@ -1,5 +1,5 @@
 {% extends 'dashboard/main.html' %}
-{% block title %}Dashboard | Home{% endblock title %}
+{% block title %}Dashboard | Results{% endblock title %}
 {% block body %}
 <div class="container container-fluid" style="margin-top:80px; margin-bottom:80px">
     <div class="row row-cols-1 row-cols-md-4 g-4">
@@ -12,7 +12,7 @@
                     
                     </div>
                     <div class="card-footer text-center">
-                        <a href="{% url 'results' event.id %}" class="btn btn-primary">Vote Results</a>
+                        <a href="{% url 'results' event.id %}" class="btn btn-primary">View Results</a>
                     </div>
                 </div>
             </div>

@@ -2,7 +2,7 @@ from django.contrib import admin
 
 from myapp.models import *
 
-admin.site.register([Event, Voted, Contestant])
+admin.site.register([Event, Voted, Contestant, Profile])
 
 
 # @admin.register(Contestant)

@@ -14,8 +14,8 @@ class Addeventform(forms.ModelForm):
             'event_name':forms.TextInput(attrs={'class':'form-control w-50'},),
             'event_catagory':forms.TextInput(attrs={'class':'form-control w-50'}),
             'event_image':forms.FileInput(attrs={'class':'form-control w-50'}),
-            'event_startdate':forms.TextInput(attrs={'class':'form-control w-50', 'type':'date'}),
-            'event_enddate':forms.TextInput(attrs={'class':'form-control w-50', 'type':'date'}),
+            'event_startdate':forms.DateTimeInput(attrs={'class':'form-control w-25', 'type':'date'}),
+            'event_enddate':forms.DateTimeInput(attrs={'class':'form-control w-25', 'type':'date'}),
             'event_detail':forms.Textarea(attrs={'class':'form-control w-50'},),
         }
 
@@ -28,8 +28,8 @@ class Eventform(forms.ModelForm):
             'event_name':forms.TextInput(attrs={'class':'form-control w-50'},),
             'event_catagory':forms.TextInput(attrs={'class':'form-control  w-50'}),
             'event_image':forms.FileInput(attrs={'class':'form-control  w-50'}),
-            'event_startdate':forms.TextInput(attrs={'class':'form-control  w-50', 'type':'date'}),
-            'event_enddate':forms.TextInput(attrs={'class':'form-control  w-50', 'type':'date'}),
+            'event_startdate':forms.DateTimeInput(attrs={'class':'form-control date w-50', 'type':'date'}),
+            'event_enddate':forms.DateTimeInput(attrs={'class':'form-control  w-50', 'type':'date'}),
             'event_detail':forms.Textarea(attrs={'class':'form-control w-50'},),
         }
 

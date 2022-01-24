@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.db.models.deletion import CASCADE
 from autoslug import AutoSlugField
 from django.contrib.postgres.fields import ArrayField
+from django.forms import BooleanField
 from numpy import False_
 
 # Create your models here.
@@ -13,13 +14,13 @@ class Event(models.Model):
     event_name=models.CharField(max_length=30)
     event_catagory=models.CharField(max_length=30)
     event_image=models.ImageField(blank=False, null=False, upload_to="eventimages/")
-    event_startdate=models.DateField(blank=False)
-    event_enddate=models.DateField(blank=False)
+    event_startdate=models.DateTimeField(blank=False)
+    event_enddate=models.DateTimeField(blank=False)
     event_detail=models.TextField(blank=True)
     slug=AutoSlugField(populate_from='event_name')
 
     def __str__(self):
-        return str(self.event_name)
+        return str(self.event_startdate)
 
 class Contestant(models.Model):
     contestant_id=models.CharField(max_length=30, unique=True)
@@ -43,5 +44,11 @@ class Voted(models.Model):
     def __str__(self):
         return f'{self.count}--{self.contestant.contestant_name}--{self.event.event_name}'
 
+class Profile(models.Model):
+    user = models.OneToOneField(User,on_delete=models.CASCADE)
+    auth_token = models.CharField(max_length=100)
+    is_verified = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
 
-
+    def __str__(self):
+        return self.user.email

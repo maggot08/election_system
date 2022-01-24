@@ -1,0 +1,13 @@
+{% extends 'reset_password/resetbase.html' %}
+{% block title %}Matadan | Success{% endblock title %} 
+
+{%block body %}
+<div class="container mt-5 text-center">
+
+    <h1 class="mb-4" >Hurray !!! Your account is verified</h1>
+
+    <p style="margin:14vh; font-size:18px;">
+        You can now <a type="button" class="btn btn-success" href="{% url 'login' %}">click here to login</a>  with the valid information.
+    </p>  
+</div>
+{% endblock %}
