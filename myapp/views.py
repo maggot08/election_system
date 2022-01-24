@@ -245,6 +245,7 @@ def results(request, id):
     }
     return render(request, 'dashboard/result_chart.html', context)
 
+
 def addevent(request):
     if request.user.is_authenticated and request.user.is_superuser:
         pass

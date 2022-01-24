@@ -33,7 +33,7 @@ urlpatterns = [
     
     path('voteresults', views.voteresults, name="voteresults"),
     path('results/<int:id>', views.results, name="results"),
-
+    
     # CRUD urls
 
     path('event',views.event, name="event"),
