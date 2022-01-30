@@ -142,3 +142,7 @@ Yeah, sure.
 Open `settings.py` and toggle `SEND_OTP` to  `False`
 Then, wait till server restarts
 
+## Add OTP verification ?
+Add your email and password in `settings.py` in order to send OTP and make sure your 
+google account has enable Less Secure Apps in settings.
+
